@@ -10,6 +10,7 @@ const xss = require('xss-clean');
 // const multer = require('multer');
 // const upload = multer();
 const app = express();
+const DB = 'mongodb+srv://amrh18039:TiOdQeAAfLqOqbkq@cluster0.tyrtmnv.mongodb.net/handzz'
 const indexroute = require("./routes/route")
 port = 4000
 
@@ -23,11 +24,12 @@ app.set('views','temp')
 app.use('/static',express.static('public'))
 app.use("/",indexroute);
 
-mongoos.connect("mongodb://0.0.0.0:27017/handzz",{
-useNewUrlParser:true,
-useUnifiedTopology:true
-}).then(()=>{
 
+mongoos.connect(DB,{
+useNewUrlParser:true,
+useUnifiedTopology:true,
+}).then(()=>{
+    console.log("connection success")
 }).catch((err)=>{
     console.log(err);
 })
