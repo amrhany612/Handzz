@@ -41,6 +41,6 @@ app.use(cors());
 app.use(xss());
 
 httpserver = http.createServer(app);
-httpserver.listen(port,'127.0.0.1',()=>{
+httpserver.listen(port,()=>{
     console.log("server running...")
 })
