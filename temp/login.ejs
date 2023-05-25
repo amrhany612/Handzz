@@ -111,7 +111,7 @@
 				</div>
 				<a href="#">Forgot Password?</a>
 				<!-- <input type="submit" class="btn" value="Login"> -->
-				<button type="submit" class="social-signin google">sign up</button>
+				<button type="submit" class="social-signin google">Log-in</button>
 
 				<p class="or">
 					Or
@@ -120,11 +120,15 @@
 				<div class="try">
 					<p class="s">Do not have an account? </p><a href="">signup</a>
 				</div>
-
-
+				<%if(locals.message){%>
+					<p class="alert alert-danger" role="alert"><%= locals.message %></p>
+				<% } %>
 			</form>
+		
 		</div>
+	
 	</div>
+	
 	<script type="text/javascript" src="/static/js/main.js"></script>
 	<!-- Vendor JS Files -->
 	<script src="/static/assets/vendor/purecounter/purecounter_vanilla.js"></script>
