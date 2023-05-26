@@ -11,6 +11,7 @@ const cors = require('cors');
 const xss = require('xss-clean');
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
+const MemoryStore = require('memorystore')(session)
 const app = express();
 const user = require("./models/usersModel")
 const DB = 'mongodb+srv://amrh18039:TiOdQeAAfLqOqbkq@cluster0.tyrtmnv.mongodb.net/handzz'
@@ -31,6 +32,9 @@ app.use(session({
     secret:process.env.secret,
     resave:false,
     saveUninitialized:false,
+    store: new MemoryStore({
+        checkPeriod: 86400000 // prune expired entries every 24h
+      }),
     cookie:{
         expires:180000,
     }
