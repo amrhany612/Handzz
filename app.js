@@ -3,6 +3,7 @@ const mongoos = require('mongoose');
 const body_parser = require('body-parser')
 require('dotenv').config()
 const http = require('http');
+const path = require('path')
 const ejs  = require('ejs');
 const bcrypt = require('bcrypt')
 const helmet = require('helmet');
@@ -14,7 +15,6 @@ const app = express();
 const user = require("./models/usersModel")
 const DB = 'mongodb+srv://amrh18039:TiOdQeAAfLqOqbkq@cluster0.tyrtmnv.mongodb.net/handzz'
 const indexroute = require("./routes/route");
-port = 4000
 
 app.use(express.json())
 app.use(body_parser.json())
@@ -65,10 +65,19 @@ let sessionchecker2 = (req,res,next)=>{
         next()
     }
 }
+
+// main page 
+
+app.get('/',(req,res)=>{
+    const isAuthenticated = req.session.isAuthenticated || false;
+    res.render("index.ejs",{isAuthenticated})
+}
+)
 // get login page 
 
 app.get("/login",sessionchecker,(req,res)=>{
     res.render("login.ejs")
+    
 })
 
 // login
@@ -81,6 +90,7 @@ app.post("/login",async(req,res)=>{
         const compare = await  bcrypt.compare(password,myuser.password)
         if(compare){
             req.session.user = myuser
+            req.session.isAuthenticated = true
             res.redirect("/")
         }else{
             res.redirect("/login")
@@ -100,10 +110,11 @@ app.get('/register',sessionchecker,(req,res)=>{
 
 
 //logout
-app.get("/logout",sessionchecker2,(req,res)=>{
+app.get("/logout",(req,res)=>{
     res.clearCookie("user_sid")
-    res.redirect("/login")
+    res.redirect("back")
 })
+
 
 
 mongoos.connect(DB,{
@@ -118,6 +129,8 @@ useUnifiedTopology:true,
 
 
 httpserver = http.createServer(app);
-httpserver.listen(port,()=>{
+httpserver.listen(process.env.PORT,'127.0.0.1',()=>{
     console.log("server running...")
 })
+
+

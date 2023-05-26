@@ -15,10 +15,11 @@ exports.addUser = async(req,res)=>{
         username:req.body.username,
         address:req.body.address,
         ph:req.body.ph,
-        password:req.body.password
+        password:req.body.password,
+        type:req.body.type
     })
     myUser.save().then(()=>{
-        res.status(200).redirect("/login/user")
+        res.status(200).redirect("/login")
     }).catch((err)=>{
         for (let e in err.errors) {
             res.status(400).send(err.errors)

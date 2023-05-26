@@ -1,4 +1,5 @@
 
 exports.indexPage = (req,res)=>{
-    res.render("index.ejs")
+    const isAuthenticated = req.session.isAuthenticated || false;
+    res.render("index.ejs",{isAuthenticated})
 }

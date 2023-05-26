@@ -46,6 +46,9 @@ const userSchema = new mongoos.Schema({
         type:String,
         minLength:8,
         
+    },
+    type:{
+        type:String,
     }
 
 
