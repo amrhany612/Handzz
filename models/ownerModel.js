@@ -36,8 +36,7 @@ const ownerSchema = new mongoos.Schema({
     },
     ph:{
         type:Number,
-        min:11,
-        max:11,
+       
     },
     email:{
         type:String,
@@ -46,7 +45,11 @@ const ownerSchema = new mongoos.Schema({
         type:String,
         minLength:8,
         
+    },
+    type:{
+        type:String,
     }
+
 
 
 })
@@ -59,5 +62,5 @@ ownerSchema.pre("save",function(next){
     next();
 })
 
-const ownerModel = mongoos.model("owner",ownerSchema)
+const ownerModel = mongoos.model("owners",ownerSchema)
 module.exports = ownerModel

@@ -10,12 +10,15 @@ const helmet = require('helmet');
 const cors = require('cors');
 const xss = require('xss-clean');
 const cookieParser = require('cookie-parser')
+const flash = require('connect-flash')
 const session = require('express-session')
 const MemoryStore = require('memorystore')(session)
 const app = express();
 const user = require("./models/usersModel")
+const owner = require("./models/ownerModel")
 const DB = 'mongodb+srv://amrh18039:TiOdQeAAfLqOqbkq@cluster0.tyrtmnv.mongodb.net/handzz'
 const indexroute = require("./routes/route");
+
 
 app.use(express.json())
 app.use(body_parser.json())
@@ -27,6 +30,7 @@ app.use(helmet({
 app.use(cors());
 app.use(xss());
 app.use(cookieParser())
+app.use(flash())
 app.use(session({
     key:'user_sid',
     secret:process.env.secret,
@@ -39,6 +43,7 @@ app.use(session({
         expires:180000,
     }
 }))
+
 
 app.use((req,res,next)=>{
     if(req.cookies.user_sid&&!req.session.user){
@@ -70,17 +75,31 @@ let sessionchecker2 = (req,res,next)=>{
     }
 }
 
+let sessionchecker3 = (req,res,next)=>{
+    if(!req.session.user&&!req.cookies.user_sid){
+        res.redirect("/login/owner")
+    }else{
+        next()
+    }
+
+}
+
 // main page 
 
 app.get('/',(req,res)=>{
-    const isAuthenticated = req.session.isAuthenticated || false;
-    res.render("index.ejs",{isAuthenticated})
-}
-)
+        const isAuthenticated = req.session.isAuthenticated || false;
+        res.status(200).render("index.ejs",{isAuthenticated})
+
+})
+
+app.get('/dash/:id',sessionchecker3,(req,res)=>{
+ 
+    res.render("dash.ejs")
+})
 // get login page 
 
 app.get("/login",sessionchecker,(req,res)=>{
-    res.render("login.ejs")
+    res.status(200).render("login.ejs")
     
 })
 
@@ -89,21 +108,41 @@ app.post("/login",async(req,res)=>{
     const username = req.body.username;
     const password = req.body.password;
     
-    const myuser = await user.findOne({username:username})
-    if(myuser){
-        const compare = await  bcrypt.compare(password,myuser.password)
-        if(compare){
-            req.session.user = myuser
-            req.session.isAuthenticated = true
-            res.redirect("/")
-        }else{
-            res.redirect("/login")
-        }
-    }else{
-        res.redirect("/register")
-    }
     
+    const myuser = await user.findOne({username:username})
+
+    if(myuser){
+        const compare =  bcrypt.compare(password,myuser.password)
+        if(compare){
+                    req.session.user = myuser
+                    req.session.isAuthenticated = true
+                    res.redirect("/")
+            }else{
+                res.redirect("/login")
+            }
+    }
+
+ 
   
+})
+
+// owner login 
+
+app.post("/login/owner",async(req,res)=>{
+    const username = req.body.ownername;
+    const password = req.body.ownerpassword;
+
+    const myowner = await owner.findOne({username:username})
+    if(myowner){
+        const compare = bcrypt.compare(password,myowner.password)
+        if(compare){
+            req.session.user = myowner
+            req.session.isOwner = true
+            res.redirect(`/dash/${myowner.id}`) 
+        }else{
+            res.redirect("/login/owner")
+        }
+    }
 })
 
 // get register page 

@@ -13,7 +13,7 @@ const storeSchema = new mongoos.Schema({
         contentType:String
     },
     
-    products:productSchema,
+    // products:productSchema,
 
     owner:ownerSchema
 })

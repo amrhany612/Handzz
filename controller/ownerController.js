@@ -28,6 +28,36 @@ exports.getInfo = async(req,res)=>{
 })
 }
 
+exports.getPage = (req,res)=>{
+    res.render("signupOwner.ejs")
+}
+exports.addowner = async(req,res)=>{
+   
+    const myOwner = await new ownerModel({
+        fname:req.body.fname,
+        lname:req.body.lname,
+        username:req.body.username,
+        address:req.body.address,
+        ph:req.body.ph,
+        password:req.body.password,
+        type:req.body.type
+    })
+    myOwner.save().then(()=>{
+        res.status(200).redirect("/login")
+    }).catch((err)=>{
+        for (let e in err.errors) {
+            res.status(400).send(err.errors)
+        }
+})
+}
+
 exports.successPage = (req,res)=>{
     res.render("success.ejs")
 }
+
+// exports.getDash = (req,res)=>{
+//     id =req.params.id
+//     const owner = ownerModel.findById(id)
+//     const isOwner = req.session.isOwner || false
+//     res.render("dash.ejs",{owner})
+// }

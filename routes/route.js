@@ -20,19 +20,23 @@ let succesChecker = (req,res,next)=>{
 
 
 
-router
-.route("/")
-.get(indexController.indexPage)
+// router
+// .route("/")
+// .get(indexController.indexPage)
 
 // router.get("/login",sessionchecker,userController.loginPage)
 // router.post("/login/user",userController.loginUser)
 
 
-// router.get("/login/owner",ownerController.loginOwnerPage)
+router.get("/login/owner",ownerController.loginOwnerPage)
 
 // router.get("/register",userController.registerPage)
+// router.get("/dash/:id",ownerController.getDash)
 router.post("/register",userController.addUser)
 router.get("/form",ownerController.getForm)
 router.post("/form",ownerController.getInfo)
 router.get("/success",ownerController.successPage)
+router.get("/owner",ownerController.getPage)
+router.post("/owner",ownerController.addowner)
+// router.get("/dash",ownerController.getDash)
 router.get("/clothes",productController.getProduct)
