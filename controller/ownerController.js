@@ -33,7 +33,7 @@ exports.getPage = (req,res)=>{
 }
 exports.addowner = async(req,res)=>{
    
-    const myOwner = await new ownerModel({
+    const myOwner = new ownerModel({
         fname:req.body.fname,
         lname:req.body.lname,
         username:req.body.username,
@@ -42,7 +42,7 @@ exports.addowner = async(req,res)=>{
         password:req.body.password,
         type:req.body.type
     })
-    myOwner.save().then(()=>{
+    await myOwner.save().then(()=>{
         res.status(200).redirect("/login")
     }).catch((err)=>{
         for (let e in err.errors) {

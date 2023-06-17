@@ -581,7 +581,7 @@ button.sear {
 .img-fluid.paument {
   transition: 0.5s;
   transform: scale(1.1);
-  max-width: 80%;
+  max-width: 100%;
   height: auto;
 
 }
@@ -1547,6 +1547,7 @@ button.sear {
 /*--------------------------------------------------------------
 # Clients
 --------------------------------------------------------------*/
+
 .clients .clients-slider .swiper-slide img {
   opacity: 0.5;
   transition: 0.3s;

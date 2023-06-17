@@ -9,28 +9,40 @@ toggle.onclick = function () {
   navigation.classList.toggle('active');
   footer.classList.toggle('active');
 };
+
 const addNewProductBtn=document.querySelector(".addProd")
 const addNewProductFrame=document.querySelector(".addFrame")
 
+
 //////// toggle button   //////////////////////////////////
+
+
+
+
 addNewProductBtn.onclick = function () {
 addNewProductFrame.classList.toggle('active');
-addNewProductBtn.textContent = addNewProductBtn.textContent=='Close'? 'Add New Product':"Close";
+addNewProductBtn.textContent = addNewProductBtn.textContent=='Close'? 'Create Account':"Close";
 }
+
 
 ////////// add image //////////////////////////////////
 const image= document.querySelector("#img");
 const newImg=document.querySelector(".newImg")
 
 image.onchange=function () {
-var fReader = new FileReader();
+let fReader = new FileReader();
 console.log(fReader);
 fReader.readAsDataURL(image.files[0]);
 fReader.onloadend = function(event){
     newImg.src = event.target.result;
 }}
 
-///////Connection with server
+///////Connection with server\
+const notification = document.getElementById('notification');
+const message = document.querySelector('.notification-message');
+const closeBtn = document.querySelector('.notification-close');
+
+
 let products=[]
 let headers = new Headers();
 headers.set(
@@ -50,7 +62,7 @@ async function getProducts() {
   products.map(product =>{
 
     productContainer.innerHTML+=`<div class="product">
-    <img src=${product.coverImg||'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png'} alt="">
+    <img src=${product.coverImg} alt="">
     <div class="productDetails">
       <div>${product.name}</div>
       <div>${product.category||"Others"}</div>

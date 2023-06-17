@@ -17,12 +17,14 @@
 body {
   min-height: 100vh;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: rgb(247, 246, 252);
+  color: rgb(70, 71, 81);
+  font-family: "Open Sans", sans-serif;
 }
-.container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
+
 .navigation {
   position: fixed;
   height: 100%;
@@ -128,6 +130,13 @@ body {
   align-items: center;
   row-gap: 20px;
 }
+.main-container {
+  grid-area: main;
+  overflow-y: auto;
+  padding: 40px 40px;
+  color: rgba(255, 255, 255, 0.95);
+}
+
 .main.active {
   width: calc(100% - 300px);
   left: 300px;
@@ -245,6 +254,47 @@ header {
   align-items: center;
   color: var(--black2);
 }
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #333;
+  font-size: 18px;
+}
+
+.edit-btn,.delete-btn {
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  margin-right: 8px;
+  cursor: pointer;
+  
+}
+
+.edit-btn {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: #fff;
+  margin-left: 60px;
+  position: fixed;
+  margin-top: -29px;
+  
+
+}
 footer{
   width: calc(100% - 80px);
 
@@ -305,14 +355,66 @@ footer button:active{
   padding: 20px;
 
 }
+
 .addFrame.active{
+  scale: 1;
+}
+.addMarket{
+  background-color: #918776;
+  color: rgb(255, 255, 255);
+  height: 40px;
+  margin: 10px;
+  width: 250px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px grey;
+}
+.addMarket:active{
+  box-shadow: inset 2px 2px 2px grey;
+}
+.addFrame2{
+  display: grid;
+  grid-template-columns: 70% 30%;
+  position: absolute;
+  top: 150px;
+  /* height: 550px; */
+  width: 95%;
+  background-color: var(--white);
+  border: 1px solid gray;
+  border-radius: 30px;
+  z-index: 5; 
+  transition: .5s;
+  scale: 0;
+  box-shadow:  0px 0px 20px  grey;
+  padding: 20px;
+
+}
+
+.addFrame2.active{
   scale: 1;
 }
 .newImg{
   width: 100%;
+  
   border-radius: 30px;
 
 }
+ /* .preview {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 20px auto;
+} */
+/*
+img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
 .addFrame form{
   height: 100%;
   display: flex;
@@ -329,6 +431,56 @@ footer button:active{
   column-gap: 10px;
 }
 .addFrame input{
+  height: 30px;
+  width: 100%;
+  padding-left: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #bdb4a4;
+  color: #2a2158;
+  outline: none;
+}
+.addFrame2 form{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10%;
+  align-items: center;
+  justify-content: center;
+  row-gap: 50px;
+}
+.addFrame2 label{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  column-gap: 10px;
+}
+.addFrame2 input{
+  height: 30px;
+  width: 100%;
+  padding-left: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #bdb4a4;
+  color: #2a2158;
+  outline: none;
+}
+.editFrame form{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10%;
+  align-items: center;
+  justify-content: center;
+  row-gap: 50px;
+}
+.editFrame label{
+  width: 100%;
+  display:grid;
+  grid-template-columns: 20% 1fr;
+  column-gap: 40px;
+}
+.editFrame input{
   height: 30px;
   width: 100%;
   padding-left: 10px;
@@ -411,6 +563,21 @@ align-items: center;
   width: 50px;
   border-radius: 50%;
   
+}
+.button {
+  display: inline-block;
+  padding: 0.5em 1em;
+  background-color: #918776;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  height: 40px;
+  width: 250px;
+  box-shadow: 2px 2px 2px grey;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
 }
 .order button{
   height: 35px;

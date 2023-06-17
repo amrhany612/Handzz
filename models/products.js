@@ -16,7 +16,8 @@ const productSchema = new mongoos.Schema({
         maxLength:12
     },
     img:{
-        type:Buffer,
+        name:String,
+        data:Buffer,
         contentType:String
     }
 })

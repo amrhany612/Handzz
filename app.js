@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoos = require('mongoose');
+const multer = require('multer')
 const body_parser = require('body-parser')
 require('dotenv').config()
 const http = require('http');
@@ -16,7 +17,8 @@ const MemoryStore = require('memorystore')(session)
 const app = express();
 const user = require("./models/usersModel")
 const owner = require("./models/ownerModel")
-const DB = 'mongodb+srv://amrh18039:TiOdQeAAfLqOqbkq@cluster0.tyrtmnv.mongodb.net/handzz'
+const store = require("./models/storeModel")
+const DB = 'mongodb://amrh18039:TiOdQeAAfLqOqbkq@ac-pjlsutq-shard-00-00.tyrtmnv.mongodb.net:27017,ac-pjlsutq-shard-00-01.tyrtmnv.mongodb.net:27017,ac-pjlsutq-shard-00-02.tyrtmnv.mongodb.net:27017/handzz?ssl=true&replicaSet=atlas-ezd372-shard-0&authSource=admin&retryWrites=true&w=majority'
 const indexroute = require("./routes/route");
 
 
@@ -55,6 +57,7 @@ app.set('Template engine','ejs')
 app.set('views','temp')
 
 app.use('/static',express.static('public'))
+app.use('/css',express.static(__dirname+'/node_modules/bootstrap/dist/css'))
 app.use("/",indexroute);
 
 
@@ -86,16 +89,14 @@ let sessionchecker3 = (req,res,next)=>{
 
 // main page 
 
-app.get('/',(req,res)=>{
+app.get('/',async(req,res)=>{
         const isAuthenticated = req.session.isAuthenticated || false;
-        res.status(200).render("index.ejs",{isAuthenticated})
+        const mystore = await store.find() 
+        res.status(200).render("index.ejs",{isAuthenticated,mystore})
 
 })
 
-app.get('/dash/:id',sessionchecker3,(req,res)=>{
- 
-    res.render("dash.ejs")
-})
+
 // get login page 
 
 app.get("/login",sessionchecker,(req,res)=>{
@@ -116,7 +117,7 @@ app.post("/login",async(req,res)=>{
         if(compare){
                     req.session.user = myuser
                     req.session.isAuthenticated = true
-                    res.redirect("/")
+                    res.status(200).redirect("/")
             }else{
                 res.redirect("/login")
             }
@@ -145,6 +146,11 @@ app.post("/login/owner",async(req,res)=>{
     }
 })
 
+app.get('/dash/:id',sessionchecker3,async(req,res)=>{
+    const id = req.params.id
+    const myOwner = await owner.findOne({_id:id})
+    res.render("dash.ejs",{myOwner})
+})
 // get register page 
 
 app.get('/register',sessionchecker,(req,res)=>{
@@ -164,16 +170,20 @@ mongoos.connect(DB,{
 useNewUrlParser:true,
 useUnifiedTopology:true,
 }).then(()=>{
-    console.log("connection success")
+    httpserver = http.createServer(app);
+    httpserver.listen(process.env.PORT,()=>{
+    console.log(`server runniung on: ${[process.env.PORT]}`)
+})
+
 }).catch((err)=>{
     console.log(err);
 })
 
 
 
-httpserver = http.createServer(app);
-httpserver.listen(process.env.PORT,()=>{
-    console.log("server running...")
-})
+// httpserver = http.createServer(app);
+// httpserver.listen(process.env.PORT,()=>{
+//     console.log("server running...")
+// })
 
 

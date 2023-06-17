@@ -437,23 +437,30 @@
         <h2>Our Clients</h2>
         <p>join us now and start your own Business over +600 store using Handzz</p>
       </header>
-
+      
       <div class="clients-slider swiper">
+        
         <div class="swiper-wrapper align-items-center">
-          <div class="swiper-slide"><a
-              href="https://www.figma.com/file/ILw2nR8QxpuCoK9hTt0ECo/Untitled?node-id=1-2&t=pdAR1haNT3GG7ZG3-0"><img
-                src="/static/assets/img/clients/client-1.png" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><img src="/static/assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
+        <%for(i in mystore){%> 
+          <div class="swiper-slide">
+            <a href="/store/<%=mystore[i].id%>">
+              <img src="/static/logo/<%= mystore[i].logo%>" class="img-fluid" alt="">
+            </a>  
+         </div>
+        <%}%>
+          <!-- <div class="swiper-slide"><img src="/static/logo/netflix-logo-png-2562.png" class="img-fluid" alt=""></div>
           <div class="swiper-slide"><img src="/static/assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
           <div class="swiper-slide"><img src="/static/assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
           <div class="swiper-slide"><img src="/static/assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
           <div class="swiper-slide"><img src="/static/assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
           <div class="swiper-slide"><img src="/static/assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
-          <div class="swiper-slide"><img src="/static/assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
+          <div class="swiper-slide"><img src="/static/assets/img/clients/client-8.png" class="img-fluid" alt=""></div> -->
         </div>
-        <div class="swiper-pagination"></div>
       </div>
+        <div class="swiper-pagination">
+        </div>
     </div>
+        
 
   </section>
   <!-- End Clients Section -->

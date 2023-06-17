@@ -1,6 +1,5 @@
 const mongoos = require('mongoose');
-const productSchema = require("./products")
-const ownerSchema = require("./ownerModel")
+
 
 const storeSchema = new mongoos.Schema({
     name:{
@@ -9,13 +8,37 @@ const storeSchema = new mongoos.Schema({
         maxLength:12
     },
     logo:{
-        type:Buffer,
-        contentType:String
+        type:String,
     },
     
-    // products:productSchema,
+    products:{
+        type:{
+            type:String,
+            minLength:3,
+            maxLength:12
+        },
+        name:{
+            type:String,
+            maxLength:12
+        },
+        price:{
+            type:String,
+            minLength:3,
+            maxLength:12
+        },
+        amount:{
+            type:Number,
+        },
+        img:{
+            name:String,
+            data:Buffer,
+            contentType:String
+        }
+    },
 
-    owner:ownerSchema
+    owner:{
+        type:String
+    }
 })
 
 

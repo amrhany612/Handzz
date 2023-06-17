@@ -1,0 +1,157 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/css/styledash.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navigation">
+        <ul>
+          <li>
+            <a href="#">
+              <span class="icon">
+                <ion-icon name="bag-handle-outline"></ion-icon>
+              </span>
+              <span class="title">Admin</span></a
+            >
+          </li>
+          <li>
+            <a href="/admin-dash">
+              <span class="icon">
+                <ion-icon name="home-outline"></ion-icon>
+              </span>
+              <span class="title">Home</span></a
+            >
+          </li>
+          <!-- <li> -->
+            <!-- <a href="products.html">
+              <span class="icon">
+                <ion-icon name="shirt-outline"></ion-icon>
+              </span>
+              <span class="title">Products</span></a
+            >
+          </li> -->
+          <li>
+            <a href="/create-account">
+              <span class="icon">
+                <ion-icon name="chatbox-outline"> </ion-icon>
+              </span>
+              <span class="title">Create Account</span></a
+            >
+          </li>
+          <li>
+            <a href="">
+              <span class="icon">
+                <ion-icon name="shirt-outline"></ion-icon>
+              </span>
+              <span class="title">Add Products</span></a>
+          </li> 
+          <li>
+            <a href="/admin/owners">
+              <span class="icon">
+                <ion-icon name="people-outline"> </ion-icon>
+              </span>
+              <span class="title">Owners</span></a
+            >
+          </li>
+          <li>
+            <a href="#">
+              <span class="icon">
+                <ion-icon name="settings-outline"> </ion-icon>
+              </span>
+              <span class="title">Settings</span></a
+            >
+          </li>
+          <!-- <li>
+            <a href="/reports.html">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"> </ion-icon>
+              </span>
+              <span class="title">Reports</span></a
+            >
+          </li> -->
+          <li>
+            <a href="/admin">
+              <span class="icon">
+                <ion-icon name="log-out-outline"> </ion-icon>
+              </span>
+              <span class="title">Sign Out</span></a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="main">
+        <header>
+          <div class="toggle">
+            <ion-icon name="menu-outline"> </ion-icon>
+          </div>
+          <div class="search">
+            <label>
+              <input type="text" placeholder="search" />
+              <ion-icon name="search-outline"> </ion-icon>
+            </label>
+          </div>
+          <div class="user">
+            <img src="/static/img/profile.png" alt=""/>
+          </div>
+        </header>
+        <button class="addProd">Create Account</button>
+        <div class="addFrame">
+          <form method="post">
+            <label for="name">
+              <div>FirstName</div>
+              <input id="name" type="text" placeholder="First Name" name="fname">
+            </label>
+            <label for="cat">
+              <div>LastName</div>
+              <input id="name" type="text" placeholder="Last Name" name="lname">
+            </label>
+            <label for="price">
+              <div>address</div>
+              <input type="text" placeholder="Address" name="address">
+            </label>
+            <label for="amount">
+              <div>ph</div>
+              <input type="text" placeholder="Phone Number" name="ph">
+            </label>
+            <!-- <label for="img">
+              <div>Image</div>
+              <label id="proImg" for="img"> Product Image</label>
+              <input id="img" type="file" >
+            </label> -->
+            <label for="cat">
+              <div>username</div>
+              <input id="name" type="text" placeholder="Username" name="username">
+            </label>
+            <label for="cat">
+              <div>password</div>
+              <input id="name" type="password" placeholder="Password" name="password">
+            </label>
+           <label ><div></div><div><div><button id="formAdd">Create Account</button></div></div></label> 
+          </form>
+          <!-- <div class="newImgDev"><img class="newImg" src="/static/img/default.png" alt=""></div> -->
+        </div>
+        <a href="/create-account/market" class="button">Create Market Now</a>
+        <!-- <div class="productContainer">
+        </div> -->
+        <!-- <footer><button>Create your Market Now</button>
+        
+        </footer> -->
+        
+      </div>
+    </div>
+    <!------------ ionicons ------------------->
+    <script
+    type="module"
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+    nomodule
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="/static/js/maindash.js"></script>
+  </body>
+</html>
