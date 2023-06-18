@@ -92,14 +92,22 @@ let sessionchecker3 = (req,res,next)=>{
 
 app.get('/',async(req,res)=>{
         const isAuthenticated = req.session.isAuthenticated || false;
-        const userAgent = req.headers['user-agent']
+        const Content_Type = req.headers['content-type']
         const mystore = await store.find() 
       
-        if(userAgent && userAgent.includes('Mobile')){
+        if(Content_Type && Content_Type.includes('json')){
             res.status(200).json({mystore,isAuthenticated:isAuthenticated})
         }else{
             res.status(200).render('index.ejs',{isAuthenticated,mystore})
         }
+
+        // if(req.accepts('text/html')){
+        //     res.status(200).render('index.ejs',{isAuthenticated,mystore})
+        // }else if(req.accepts('json')){
+        //     res.status(200).json({mystore,isAuthenticated:isAuthenticated})
+        // }else{
+        //     res.status(400)
+        // }
     
        
     
