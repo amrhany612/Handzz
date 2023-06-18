@@ -10,15 +10,18 @@ const productSchema = new mongoos.Schema({
         type:String,
         maxLength:12
     },
+    storename:{
+        type:String
+    },
     price:{
-        type:String,
-        minLength:3,
-        maxLength:12
+        type:Number,
+
+    },
+    amount:{
+        type:Number,
     },
     img:{
-        name:String,
-        data:Buffer,
-        contentType:String
+        type:String
     }
 })
 

@@ -22,17 +22,14 @@ const storeSchema = new mongoos.Schema({
             maxLength:12
         },
         price:{
-            type:String,
-            minLength:3,
-            maxLength:12
+            type:Number,
+           
         },
         amount:{
             type:Number,
         },
         img:{
-            name:String,
-            data:Buffer,
-            contentType:String
+            type:String
         }
     },
 

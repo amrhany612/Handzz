@@ -8,6 +8,7 @@ const path = require('path')
 const ejs  = require('ejs');
 const bcrypt = require('bcrypt')
 const helmet = require('helmet');
+const axios = require("axios")
 const cors = require('cors');
 const xss = require('xss-clean');
 const cookieParser = require('cookie-parser')
@@ -91,36 +92,73 @@ let sessionchecker3 = (req,res,next)=>{
 
 app.get('/',async(req,res)=>{
         const isAuthenticated = req.session.isAuthenticated || false;
+        const userAgent = req.headers['user-agent']
         const mystore = await store.find() 
-        res.status(200).render("index.ejs",{isAuthenticated,mystore})
-
+      
+        if(userAgent && userAgent.includes('Mobile')){
+            res.status(200).json({mystore,isAuthenticated:isAuthenticated})
+        }else{
+            res.status(200).render('index.ejs',{isAuthenticated,mystore})
+        }
+    
+       
+    
 })
 
 
 // get login page 
-
+        
 app.get("/login",sessionchecker,(req,res)=>{
     res.status(200).render("login.ejs")
     
 })
 
+
 // login
 app.post("/login",async(req,res)=>{
     const username = req.body.username;
     const password = req.body.password;
+    const userAgent = req.headers['user-agent']
     
     
     const myuser = await user.findOne({username:username})
-
+    
     if(myuser){
-        const compare =  bcrypt.compare(password,myuser.password)
-        if(compare){
+        const Password =  await bcrypt.compare(password,myuser.password)
+        if(Password){
                     req.session.user = myuser
                     req.session.isAuthenticated = true
+                    if(userAgent && userAgent.includes('Mobile')){
+                        res.status(200).json({myuser,"msg":"Login Successful"})
+
+                    }else{
                     res.status(200).redirect("/")
+                
+                    }
+                }else{
+                    if(userAgent && userAgent.includes('Mobile')){
+                        res.status(400).json({"msg":"Username or Password is incorrect"})
+
+                    }else{
+                    res.status(200).redirect("/login")
+                
+                    }
+                }
+            // }else{
+            //     if(userAgent && userAgent.includes('Mobile')){
+            //         res.status(400).json({"msg":"Login Faild"})
+
+            //     }else{
+            //     res.status(400).redirect("/login")
+            //     }
+                
             }else{
-                res.redirect("/login")
-            }
+        if(userAgent && userAgent.includes('Mobile')){
+            res.status(400).json({"msg":"Username or Password is incorrect"})
+
+        }else{
+        res.status(400).redirect("/login")
+        }
     }
 
  

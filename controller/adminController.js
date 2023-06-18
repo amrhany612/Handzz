@@ -119,16 +119,13 @@ exports.addStore = async (req,res)=>{
 }
 
 exports.addProduct = async (req,res)=>{
-        const mystore = await store.findOneAndUpdate({name:req.body.Storename},{products:{
+        const mystore = await store.findOneAndUpdate({name:req.body.Storename},{"$addToSet":{products:{
             type:req.body.type,
             name: req.body.name,
             price:req.body.price,
             amount:req.body.amount,
-            img:{
-              name:req.file.originalname,
-              data:req.file.buffer,
-              contentType:req.file.mimetype
-            }
+            img:req.file.filename
+        }
         }
           })
 
