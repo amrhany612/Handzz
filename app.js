@@ -100,14 +100,6 @@ app.get('/',async(req,res)=>{
         }else{
             res.status(200).render('index.ejs',{isAuthenticated,mystore})
         }
-
-        // if(req.accepts('text/html')){
-        //     res.status(200).render('index.ejs',{isAuthenticated,mystore})
-        // }else if(req.accepts('json')){
-        //     res.status(200).json({mystore,isAuthenticated:isAuthenticated})
-        // }else{
-        //     res.status(400)
-        // }
     
        
     
@@ -126,7 +118,8 @@ app.get("/login",sessionchecker,(req,res)=>{
 app.post("/login",async(req,res)=>{
     const username = req.body.username;
     const password = req.body.password;
-    const userAgent = req.headers['user-agent']
+    const Content_Type = req.headers['content-type']
+
     
     
     const myuser = await user.findOne({username:username})
@@ -136,7 +129,7 @@ app.post("/login",async(req,res)=>{
         if(Password){
                     req.session.user = myuser
                     req.session.isAuthenticated = true
-                    if(userAgent && userAgent.includes('Mobile')){
+                    if(Content_Type && Content_Type.includes('json')){
                         res.status(200).json({myuser,"msg":"Login Successful"})
 
                     }else{
@@ -144,7 +137,7 @@ app.post("/login",async(req,res)=>{
                 
                     }
                 }else{
-                    if(userAgent && userAgent.includes('Mobile')){
+                    if(Content_Type && Content_Type.includes('json')){
                         res.status(400).json({"msg":"Username or Password is incorrect"})
 
                     }else{
@@ -161,7 +154,7 @@ app.post("/login",async(req,res)=>{
             //     }
                 
             }else{
-        if(userAgent && userAgent.includes('Mobile')){
+        if(Content_Type && Content_Type.includes('json')){
             res.status(400).json({"msg":"Username or Password is incorrect"})
 
         }else{
