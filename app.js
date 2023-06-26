@@ -49,6 +49,7 @@ app.use(session({
 
 
 app.use((req,res,next)=>{
+    
     if(req.cookies.user_sid&&!req.session.user){
         res.clearCookie("user_sid")
     }
@@ -104,6 +105,8 @@ app.get('/',async(req,res)=>{
        
     
 })
+// 
+
 
 
 // get login page 
@@ -138,7 +141,7 @@ app.post("/login",async(req,res)=>{
                     }
                 }else{
                     if(Content_Type && Content_Type.includes('json')){
-                        res.status(400).json({"msg":"Username or Password is incorrect"})
+                        res.status(200).json({"msg":"Username or Password is incorrect"})
 
                     }else{
                     res.status(200).redirect("/login")
@@ -155,10 +158,10 @@ app.post("/login",async(req,res)=>{
                 
             }else{
         if(Content_Type && Content_Type.includes('json')){
-            res.status(400).json({"msg":"Username or Password is incorrect"})
+            res.status(200).json({"msg":"Username or Password is incorrect"})
 
         }else{
-        res.status(400).redirect("/login")
+        res.status(200).redirect("/login")
         }
     }
 
@@ -171,16 +174,35 @@ app.post("/login",async(req,res)=>{
 app.post("/login/owner",async(req,res)=>{
     const username = req.body.ownername;
     const password = req.body.ownerpassword;
+    const Content_Type = req.headers['content-type']
 
     const myowner = await owner.findOne({username:username})
     if(myowner){
-        const compare = bcrypt.compare(password,myowner.password)
+        const compare = await bcrypt.compare(password,myowner.password)
         if(compare){
             req.session.user = myowner
             req.session.isOwner = true
-            res.redirect(`/dash/${myowner.id}`) 
+            if(Content_Type && Content_Type.includes('json')){
+                res.status(200).json({myowner,"msg":"Login Successful"})
+
+            }else{
+            res.status(200).redirect(`/dash/${myowner.id}`)
+        
+            }
         }else{
-            res.redirect("/login/owner")
+            if(Content_Type && Content_Type.includes('json')){
+                res.status(200).json({"msg":"Username or Password is incorrect"})
+
+            }else{
+            res.status(200).redirect("/login")
+        
+            }
+        }
+    }else{
+        if(Content_Type && Content_Type.includes('json')){
+        res.status(200).json({"msg":"Username or Password is incorrect"})
+        }else{
+            res.status(200).redirect("/login")
         }
     }
 })
@@ -196,6 +218,29 @@ app.get('/register',sessionchecker,(req,res)=>{
     res.render("sign up.ejs")
 })
 
+app.post("/register",async(req,res)=>{
+    const content_type = req.headers['content-type']
+
+    const myUser =  new user({
+        fname:req.body.fname,
+        lname:req.body.lname,
+        username:req.body.username,
+        address:req.body.address,
+        ph:req.body.ph,
+        password:req.body.password,
+        type:req.body.type
+    })
+    await myUser.save().then(()=>{
+        if(content_type && content_type.includes('json')){
+            res.status(200).json({myUser,msg:"Registered"})
+        }else{
+            res.status(201).redirect("/login")
+        }
+    }).catch((err)=>{
+        res.status(500).json({msg:"Failed To Reach Server"})
+    })
+
+})
 
 //logout
 app.get("/logout",(req,res)=>{

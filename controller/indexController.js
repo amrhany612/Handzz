@@ -6,9 +6,11 @@ exports.indexPage = (req,res)=>{
 
 exports.getStore = async(req,res)=>{
     const id = req.params.id
+    let i = 0
     const Store = await store.findOne({_id:id})
     if(Store){
-        res.render('store/index.ejs',{Store})
+        res.render('store/index.ejs',{Store,i})
+    
     }else{
         res.redirect("/")
     }

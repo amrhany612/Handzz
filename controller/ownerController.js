@@ -14,16 +14,22 @@ exports.getForm = (req,res)=>{
 }
 
 exports.getInfo = async(req,res)=>{
-    const storeInfo = await new formModel({
+    const content_type = req.headers['content-type']
+    const storeInfo =  new formModel({
         type:req.body.type,
         storeName:req.body.storeName,
         ph:req.body.ph,
     })
-    storeInfo.save().then(()=>{
-        res.status(200).redirect("/success")
+    await storeInfo.save().then(()=>{
+        if(content_type && content_type.includes('json')){
+            res.status(200).json({storeInfo,msg:"Form Sent"})
+        }else{
+            res.status(200).redirect("/success")
+        }
+        
     }).catch((err)=>{
         for (let e in err.errors) {
-            res.status(400).send(err.errors)
+            res.status(500).send(err.errors)
         }
 })
 }
@@ -46,7 +52,7 @@ exports.addowner = async(req,res)=>{
         res.status(200).redirect("/login")
     }).catch((err)=>{
         for (let e in err.errors) {
-            res.status(400).send(err.errors)
+            res.status(500).send(err.errors)
         }
 })
 }

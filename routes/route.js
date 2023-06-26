@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express()
 const path = require('path')
 const router = express.Router(); 
 const indexController = require("../controller/indexController")
@@ -30,7 +31,7 @@ let succesChecker = (req,res,next)=>{
 
 router.get("/login/owner",ownerController.loginOwnerPage)
 
-router.post("/register",userController.addUser)
+// router.post("/register",userController.addUser)
 router.get("/form",ownerController.getForm)
 router.post("/form",ownerController.getInfo)
 router.get("/success",ownerController.successPage)

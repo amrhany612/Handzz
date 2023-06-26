@@ -57,9 +57,11 @@ const userSchema = new mongoos.Schema({
 userSchema.pre("save",function(next){
     if(!this.isModified("password")){
         return next()
-    }
+    }else{
     this.password=bcrypt.hashSync(this.password,10);
     next();
+    }
+
 })
 
 const userModel = mongoos.model("users",userSchema)
