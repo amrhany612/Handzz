@@ -178,8 +178,9 @@ app.get("/google",passport.authenticate('google',{scope:['profile','email']}))
 
 app.get("/google/callback",passport.authenticate('google',{failureRedirect:'/login'}),
 function(req,res){
-    res.redirect("/")
     req.session.isAuthenticated = true
+    res.redirect("/")
+    
 })
 // owner login 
 
