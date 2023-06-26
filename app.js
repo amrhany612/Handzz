@@ -19,8 +19,10 @@ const app = express();
 const user = require("./models/usersModel")
 const owner = require("./models/ownerModel")
 const store = require("./models/storeModel")
+require('./passport-setup')
 const DB = 'mongodb://amrh18039:TiOdQeAAfLqOqbkq@ac-pjlsutq-shard-00-00.tyrtmnv.mongodb.net:27017,ac-pjlsutq-shard-00-01.tyrtmnv.mongodb.net:27017,ac-pjlsutq-shard-00-02.tyrtmnv.mongodb.net:27017/handzz?ssl=true&replicaSet=atlas-ezd372-shard-0&authSource=admin&retryWrites=true&w=majority'
 const indexroute = require("./routes/route");
+const passport = require('passport');
 
 
 app.use(express.json())
@@ -57,6 +59,9 @@ app.use((req,res,next)=>{
 })
 app.set('Template engine','ejs')
 app.set('views','temp')
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use('/static',express.static('public'))
 app.use('/css',express.static(__dirname+'/node_modules/bootstrap/dist/css'))
@@ -169,6 +174,12 @@ app.post("/login",async(req,res)=>{
   
 })
 
+app.get("/google",passport.authenticate('google',{scope:['profile','email']}))
+
+app.get("/google/callback",passport.authenticate('google',{failureRedirect:'/login'}),
+function(req,res){
+    res.redirect("/")
+})
 // owner login 
 
 app.post("/login/owner",async(req,res)=>{
