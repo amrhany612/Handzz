@@ -8,9 +8,10 @@ const storeSchema = new mongoos.Schema({
         maxLength:12
     },
     logo:{
-        type:String,
+        name:String,
+        data:Buffer,
+        contentType:String
     },
-    
     products:{
         type:{
             type:String,

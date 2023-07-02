@@ -7,6 +7,7 @@ const userController = require("../controller/userController")
 const ownerController = require("../controller/ownerController")
 const productController = require("../controller/productController");
 const adminController = require("../controller/adminController")
+const storeController = require("../controller/storeController")
 const session = require('express-session')
 const cookies = require('cookie-parser')
 const multer = require('multer')
@@ -16,9 +17,12 @@ const storage = multer.diskStorage({
     },
     filename:(req,file,cb)=>{
         cb(null,file.originalname)
-    }
+    },
+    
 });
 const upload = multer({storage:storage});
+const storage2 = multer.memoryStorage()
+const upload2 = multer({storage:storage2})
 module.exports = router;
 let succesChecker = (req,res,next)=>{
     if(req.session.user&&req.cookies.user_sid){
@@ -49,12 +53,12 @@ router.post("/admin/owners/:id",adminController.deleteOwner)
 router.get("/admin/owners/:id/edit",adminController.editPage)
 router.post("/admin/owners/:id/edit",adminController.editOwner)
 router.get("/create-account/market",adminController.marketPage)
-router.post("/create-account/market",upload.single("image"),adminController.addStore)
+router.post("/create-account/market",upload2.single("image"),adminController.addStore)
 router.get("/products",adminController.productPage)
 router.post("/products",upload.single("image"),adminController.addProduct)
 router.get("/store/:id",indexController.getStore)
-
-
+router.get("/store/:id/product-details/:name",storeController.getProduct)
+router.post("/store/check-out",storeController.checkOutPage)
 
 
 

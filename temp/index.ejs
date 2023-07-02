@@ -445,7 +445,7 @@
         <%for(i in mystore){%> 
           <div class="swiper-slide">
             <a href="/store/<%=mystore[i].id%>">
-              <img src="/static/logo/<%= mystore[i].logo%>" class="img-fluid" alt="">
+              <img src="data:<%=mystore[i].logo.contentType%>;base64,<%= resizedImages[i] %>" class="img-fluid" alt="">
             </a>  
          </div>
         <%}%>

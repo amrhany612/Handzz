@@ -26,15 +26,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //Meta tag Keywords -->
 
 	<!-- Custom-Files -->
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/static/css/bootstrapstore.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- Bootstrap css -->
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/static/css/stylestore.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- Main css -->
-	<link rel="stylesheet" href="css/fontawesome-all.css">
+	<link rel="stylesheet" href="/static/css/fontawesome-all.css">
 	<!-- Font-Awesome-Icons-CSS -->
-	<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/static/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- pop-up-box -->
-	<link href="css/menu.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/static/css/menu.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- menu style -->
 	<!-- //Custom-Files -->
 
@@ -793,7 +793,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<tr>
 								<th>SL No.</th>
 								<th>Product</th>
-								<th>Quality</th>
+								<th>Quantity</th>
 								<th>Product Name</th>
 
 								<th>Price</th>
@@ -801,25 +801,32 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</tr>
 						</thead>
 						<tbody>
+							<% n=0%>
+							<%for(i in values){%>
+
 							<tr class="rem1">
-								<td class="invert">1</td>
+								<td class="invert"><%=n += 1%></td>
 								<td class="invert-image">
 									<a href="single.html">
 										<img src="images/a.jpg" alt=" " class="img-responsive">
 									</a>
 								</td>
 								<td class="invert">
+
 									<div class="quantity">
 										<div class="quantity-select">
 											<div class="entry value-minus">&nbsp;</div>
 											<div class="entry value">
-												<span>1</span>
+
+												<span><%=values[i]%></span>
+
 											</div>
 											<div class="entry value-plus active">&nbsp;</div>
 										</div>
 									</div>
+
 								</td>
-								<td class="invert">Back Cover</td>
+								<td class="invert"><%=values2[i]%></td>
 								<td class="invert">$259</td>
 								<td class="invert">
 									<div class="rem">
@@ -827,58 +834,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									</div>
 								</td>
 							</tr>
-							<tr class="rem2">
-								<td class="invert">2</td>
-								<td class="invert-image">
-									<a href="single2.html">
-										<img src="images/a4.jpg" alt=" " class="img-responsive">
-									</a>
-								</td>
-								<td class="invert">
-									<div class="quantity">
-										<div class="quantity-select">
-											<div class="entry value-minus">&nbsp;</div>
-											<div class="entry value">
-												<span>1</span>
-											</div>
-											<div class="entry value-plus active">&nbsp;</div>
-										</div>
-									</div>
-								</td>
-								<td class="invert">Cordless Trimmer</td>
-								<td class="invert">$1,999</td>
-								<td class="invert">
-									<div class="rem">
-										<div class="close2"> </div>
-									</div>
-								</td>
-							</tr>
-							<tr class="rem3">
-								<td class="invert">3</td>
-								<td class="invert-image">
-									<a href="single.html">
-										<img src="images/a3.jpg" alt=" " class="img-responsive">
-									</a>
-								</td>
-								<td class="invert">
-									<div class="quantity">
-										<div class="quantity-select">
-											<div class="entry value-minus">&nbsp;</div>
-											<div class="entry value">
-												<span>1</span>
-											</div>
-											<div class="entry value-plus active">&nbsp;</div>
-										</div>
-									</div>
-								</td>
-								<td class="invert">Nikon Camera</td>
-								<td class="invert">$37,490</td>
-								<td class="invert">
-									<div class="rem">
-										<div class="close3"> </div>
-									</div>
-								</td>
-							</tr>
+							<%}%>
+							
+						
 						</tbody>
 					</table>
 				</div>
@@ -933,10 +891,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<!-- //checkout page -->
 
-	<
+	
 	<!-- js-files -->
 	<!-- jquery -->
-	<script src="js/jquery-2.2.3.min.js"></script>
+	<script src="/static/js/jquery-2.2.3.min.js"></script>
 	<!-- //jquery -->
 
 	<!-- nav smooth scroll -->
@@ -957,7 +915,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //nav smooth scroll -->
 
 	<!-- popup modal (for location)-->
-	<script src="js/jquery.magnific-popup.js"></script>
+	<script src="/static/js/jquery.magnific-popup.js"></script>
 	<script>
 		$(document).ready(function () {
 			$('.popup-with-zoom-anim').magnificPopup({
@@ -977,7 +935,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //popup modal (for location)-->
 
 	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
+	<script src="/static/js/minicart.js"></script>
 	<script>
 		paypals.minicarts.render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
 
@@ -992,7 +950,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				total += items[i].get('quantity');
 			}
 
-			if (total < 3) {
+			if (total < 1) {
 				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
 				evt.preventDefault();
 			}
@@ -1064,12 +1022,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //quantity -->
 
 	<!-- smoothscroll -->
-	<script src="js/SmoothScroll.min.js"></script>
+	<script src="/static/js/SmoothScroll.min.js"></script>
 	<!-- //smoothscroll -->
 
 	<!-- start-smooth-scrolling -->
-	<script src="js/move-top.js"></script>
-	<script src="js/easing.js"></script>
+	<script src="/static/js/move-top.js"></script>
+	<script src="/static/js/easing.js"></script>
 	<script>
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -1103,7 +1061,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //smooth-scrolling-of-move-up -->
 
 	<!-- for bootstrap working -->
-	<script src="js/bootstrap.js"></script>
+	<script src="/static/js/bootstrap.js"></script>
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
 

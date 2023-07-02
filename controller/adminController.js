@@ -1,5 +1,7 @@
 const owner = require("../models/ownerModel")
 const store = require("../models/storeModel")
+const product = require("../models/products")
+const sharp =require('sharp')
 const bcrypt = require('bcrypt') 
 const multer = require('multer')
 const storage = multer.memoryStorage();
@@ -102,14 +104,21 @@ exports.productPage = (req,res)=>{
 }
 
 exports.addStore = async (req,res)=>{
+ 
     const myStore = new store({
         
         name:req.body.Marketname,
-        logo:req.file.filename,
+        logo:{
+            name:req.file.originalname,
+            data:req.file.buffer,
+            contentType:req.file.mimetype
+        },
         owner:req.body.Ownername,
     
     })
-    await myStore.save().then(()=>{
+    
+  
+    myStore.save().then(()=>{
         res.status(200).redirect("/admin-dash")
     }).catch((err)=>{
         for (let e in err.errors) {
@@ -118,21 +127,37 @@ exports.addStore = async (req,res)=>{
 })
 }
 
-exports.addProduct = async (req,res)=>{
-        const mystore = await store.findOneAndUpdate({name:req.body.Storename},{"$addToSet":{products:{
-            type:req.body.type,
-            name: req.body.name,
-            price:req.body.price,
-            amount:req.body.amount,
-            img:req.file.filename
-        }
-        }
-          })
+// exports.addProduct = async (req,res)=>{
+//         const myProduct =  new product({
+//             type:req.body.type,
+//             storename:req.body.Storename,
+//             name: req.body.name,
+//             price:req.body.price,
+//             amount:req.body.amount,
+//             img:req.file.filename
+//         }) 
+//         myProduct.save().then(()=>{
+//             res.redirect("/products")
+//         }).catch(()=>{
+//             res.redirect("/create-account")
+//         }) 
+// }
 
-        if(mystore){
-            res.redirect("/admin-dash")
-        }else{
-            res.redirect("/create-account/market")
-        }
- 
+exports.addProduct = async (req,res)=>{
+    const mystore = await store.findOneAndUpdate({name:req.body.Storename},{"$addToSet":{products:{
+        type:req.body.type,
+        name: req.body.name,
+        price:req.body.price,
+        amount:req.body.amount,
+        img:req.file.filename
+    }
+    }
+      })
+
+    if(mystore){
+        res.redirect("/admin-dash")
+    }else{
+        res.redirect("/create-account/market")
+    }
+
 }

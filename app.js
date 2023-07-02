@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoos = require('mongoose');
 const multer = require('multer')
+const sharp = require('sharp')
 const body_parser = require('body-parser')
 require('dotenv').config()
 const http = require('http');
@@ -23,6 +24,7 @@ require('./passport-setup')
 const DB = 'mongodb://amrh18039:TiOdQeAAfLqOqbkq@ac-pjlsutq-shard-00-00.tyrtmnv.mongodb.net:27017,ac-pjlsutq-shard-00-01.tyrtmnv.mongodb.net:27017,ac-pjlsutq-shard-00-02.tyrtmnv.mongodb.net:27017/handzz?ssl=true&replicaSet=atlas-ezd372-shard-0&authSource=admin&retryWrites=true&w=majority'
 const indexroute = require("./routes/route");
 const passport = require('passport');
+const expressEjsLayouts = require('express-ejs-layouts');
 
 
 app.use(express.json())
@@ -57,6 +59,7 @@ app.use((req,res,next)=>{
     }
     next()
 })
+
 app.set('Template engine','ejs')
 app.set('views','temp')
 
@@ -100,13 +103,23 @@ app.get('/',async(req,res)=>{
         const isAuthenticated = req.session.isAuthenticated || false;
         const Content_Type = req.headers['content-type']
         const mystore = await store.find() 
-      
+        const resizedImages = []
+        for(i in mystore){
+            const resizedBuffer = await sharp(mystore[i].logo.data)
+            .resize(100,100)
+            .toBuffer();
+            const resizedImage = resizedBuffer.toString('base64');
+            resizedImages.push(resizedImage)
+        }
+            
+
         if(Content_Type && Content_Type.includes('json')){
             res.status(200).json({mystore,isAuthenticated:isAuthenticated})
         }else{
-            res.status(200).render('index.ejs',{isAuthenticated,mystore})
+            res.status(200).render('index.ejs',{isAuthenticated,mystore,resizedImages})
         }
-    
+     
+    // console.log(mystore.name)
        
     
 })
@@ -153,13 +166,6 @@ app.post("/login",async(req,res)=>{
                 
                     }
                 }
-            // }else{
-            //     if(userAgent && userAgent.includes('Mobile')){
-            //         res.status(400).json({"msg":"Login Faild"})
-
-            //     }else{
-            //     res.status(400).redirect("/login")
-            //     }
                 
             }else{
         if(Content_Type && Content_Type.includes('json')){
@@ -228,12 +234,20 @@ app.get('/dash/:id',sessionchecker3,async(req,res)=>{
 // get register page 
 
 app.get('/register',sessionchecker,(req,res)=>{
-    res.render("sign up.ejs")
+    const empty = false
+    res.render("sign up.ejs",{empty})
 })
 
 app.post("/register",async(req,res)=>{
     const content_type = req.headers['content-type']
-
+    const fname = req.body.fname
+    const lname = req.body.lname
+    const username= req.body.username
+    const address = req.body.address
+    const ph = req.body.ph
+    const password=req.body.password
+    const type = req.body.type
+    let errors = []
     const myUser =  new user({
         fname:req.body.fname,
         lname:req.body.lname,
@@ -243,6 +257,19 @@ app.post("/register",async(req,res)=>{
         password:req.body.password,
         type:req.body.type
     })
+    if(fname == "" || lname=="",username==""|| address==""||ph==""||password==""){
+        if(content_type && content_type.includes('json')){
+            res.status(200).json({"msg":"All fields are required"})
+        }else{
+            
+            errors.push({msg:'All fields are required'})
+            const empty = true;
+            res.render('sign up',{
+                errors,
+                empty
+            })
+        }
+    }
     await myUser.save().then(()=>{
         if(content_type && content_type.includes('json')){
             res.status(200).json({myUser,msg:"Registered"})

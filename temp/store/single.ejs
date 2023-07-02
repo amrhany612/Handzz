@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="zxx">
 
 <head>
-	<title>Electro Store Ecommerce Category Bootstrap Responsive Web Template | Single Product 1 :: w3layouts</title>
+	<title><%=Store.name%></title>
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />
@@ -26,15 +26,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //Meta tag Keywords -->
 
 	<!-- Custom-Files -->
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/static/css/bootstrapstore.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- Bootstrap css -->
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/static/css/stylestore.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- Main css -->
-	<link rel="stylesheet" href="css/fontawesome-all.css">
+	<link rel="stylesheet" href="/static/css/fontawesome-all.css">
 	<!-- Font-Awesome-Icons-CSS -->
-	<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/static/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- pop-up-box -->
-	<link href="css/menu.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/static/css/menu.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- menu style -->
 	<!-- //Custom-Files -->
 
@@ -49,387 +49,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <body>
 	
 	<!-- Button trigger modal(select-location) -->
-	<div id="small-dialog1" class="mfp-hide">
-		<div class="select-city">
-			<h3>
-				<i class="fas fa-map-marker"></i> Please Select Your Location</h3>
-			<select class="list_of_cities">
-				<optgroup label="Popular Cities">
-					<option selected style="display:none;color:#eee;">Select City</option>
-					<option>Birmingham</option>
-					<option>Anchorage</option>
-					<option>Phoenix</option>
-					<option>Little Rock</option>
-					<option>Los Angeles</option>
-					<option>Denver</option>
-					<option>Bridgeport</option>
-					<option>Wilmington</option>
-					<option>Jacksonville</option>
-					<option>Atlanta</option>
-					<option>Honolulu</option>
-					<option>Boise</option>
-					<option>Chicago</option>
-					<option>Indianapolis</option>
-				</optgroup>
-				<optgroup label="Alabama">
-					<option>Birmingham</option>
-					<option>Montgomery</option>
-					<option>Mobile</option>
-					<option>Huntsville</option>
-					<option>Tuscaloosa</option>
-				</optgroup>
-				<optgroup label="Alaska">
-					<option>Anchorage</option>
-					<option>Fairbanks</option>
-					<option>Juneau</option>
-					<option>Sitka</option>
-					<option>Ketchikan</option>
-				</optgroup>
-				<optgroup label="Arizona">
-					<option>Phoenix</option>
-					<option>Tucson</option>
-					<option>Mesa</option>
-					<option>Chandler</option>
-					<option>Glendale</option>
-				</optgroup>
-				<optgroup label="Arkansas">
-					<option>Little Rock</option>
-					<option>Fort Smith</option>
-					<option>Fayetteville</option>
-					<option>Springdale</option>
-					<option>Jonesboro</option>
-				</optgroup>
-				<optgroup label="California">
-					<option>Los Angeles</option>
-					<option>San Diego</option>
-					<option>San Jose</option>
-					<option>San Francisco</option>
-					<option>Fresno</option>
-				</optgroup>
-				<optgroup label="Colorado">
-					<option>Denver</option>
-					<option>Colorado</option>
-					<option>Aurora</option>
-					<option>Fort Collins</option>
-					<option>Lakewood</option>
-				</optgroup>
-				<optgroup label="Connecticut">
-					<option>Bridgeport</option>
-					<option>New Haven</option>
-					<option>Hartford</option>
-					<option>Stamford</option>
-					<option>Waterbury</option>
-				</optgroup>
-				<optgroup label="Delaware">
-					<option>Wilmington</option>
-					<option>Dover</option>
-					<option>Newark</option>
-					<option>Bear</option>
-					<option>Middletown</option>
-				</optgroup>
-				<optgroup label="Florida">
-					<option>Jacksonville</option>
-					<option>Miami</option>
-					<option>Tampa</option>
-					<option>St. Petersburg</option>
-					<option>Orlando</option>
-				</optgroup>
-				<optgroup label="Georgia">
-					<option>Atlanta</option>
-					<option>Augusta</option>
-					<option>Columbus</option>
-					<option>Savannah</option>
-					<option>Athens</option>
-				</optgroup>
-				<optgroup label="Hawaii">
-					<option>Honolulu</option>
-					<option>Pearl City</option>
-					<option>Hilo</option>
-					<option>Kailua</option>
-					<option>Waipahu</option>
-				</optgroup>
-				<optgroup label="Idaho">
-					<option>Boise</option>
-					<option>Nampa</option>
-					<option>Meridian</option>
-					<option>Idaho Falls</option>
-					<option>Pocatello</option>
-				</optgroup>
-				<optgroup label="Illinois">
-					<option>Chicago</option>
-					<option>Aurora</option>
-					<option>Rockford</option>
-					<option>Joliet</option>
-					<option>Naperville</option>
-				</optgroup>
-				<optgroup label="Indiana">
-					<option>Indianapolis</option>
-					<option>Fort Wayne</option>
-					<option>Evansville</option>
-					<option>South Bend</option>
-					<option>Hammond</option>
-				</optgroup>
-				<optgroup label="Iowa">
-					<option>Des Moines</option>
-					<option>Cedar Rapids</option>
-					<option>Davenport</option>
-					<option>Sioux City</option>
-					<option>Waterloo</option>
-				</optgroup>
-				<optgroup label="Kansas">
-					<option>Wichita</option>
-					<option>Overland Park</option>
-					<option>Kansas City</option>
-					<option>Topeka</option>
-					<option>Olathe </option>
-				</optgroup>
-				<optgroup label="Kentucky">
-					<option>Louisville</option>
-					<option>Lexington</option>
-					<option>Bowling Green</option>
-					<option>Owensboro</option>
-					<option>Covington</option>
-				</optgroup>
-				<optgroup label="Louisiana">
-					<option>New Orleans</option>
-					<option>Baton Rouge</option>
-					<option>Shreveport</option>
-					<option>Metairie</option>
-					<option>Lafayette</option>
-				</optgroup>
-				<optgroup label="Maine">
-					<option>Portland</option>
-					<option>Lewiston</option>
-					<option>Bangor</option>
-					<option>South Portland</option>
-					<option>Auburn</option>
-				</optgroup>
-				<optgroup label="Maryland">
-					<option>Baltimore</option>
-					<option>Frederick</option>
-					<option>Rockville</option>
-					<option>Gaithersburg</option>
-					<option>Bowie</option>
-				</optgroup>
-				<optgroup label="Massachusetts">
-					<option>Boston</option>
-					<option>Worcester</option>
-					<option>Springfield</option>
-					<option>Lowell</option>
-					<option>Cambridge</option>
-				</optgroup>
-				<optgroup label="Michigan">
-					<option>Detroit</option>
-					<option>Grand Rapids</option>
-					<option>Warren</option>
-					<option>Sterling Heights</option>
-					<option>Lansing</option>
-				</optgroup>
-				<optgroup label="Minnesota">
-					<option>Minneapolis</option>
-					<option>St. Paul</option>
-					<option>Rochester</option>
-					<option>Duluth</option>
-					<option>Bloomington</option>
-				</optgroup>
-				<optgroup label="Mississippi">
-					<option>Jackson</option>
-					<option>Gulfport</option>
-					<option>Southaven</option>
-					<option>Hattiesburg</option>
-					<option>Biloxi</option>
-				</optgroup>
-				<optgroup label="Missouri">
-					<option>Kansas City</option>
-					<option>St. Louis</option>
-					<option>Springfield</option>
-					<option>Independence</option>
-					<option>Columbia</option>
-				</optgroup>
-				<optgroup label="Montana">
-					<option>Billings</option>
-					<option>Missoula</option>
-					<option>Great Falls</option>
-					<option>Bozeman</option>
-					<option>Butte-Silver Bow</option>
-				</optgroup>
-				<optgroup label="Nebraska">
-					<option>Omaha</option>
-					<option>Lincoln</option>
-					<option>Bellevue</option>
-					<option>Grand Island</option>
-					<option>Kearney</option>
-				</optgroup>
-				<optgroup label="Nevada">
-					<option>Las Vegas</option>
-					<option>Henderson</option>
-					<option>North Las Vegas</option>
-					<option>Reno</option>
-					<option>Sunrise Manor</option>
-				</optgroup>
-				<optgroup label="New Hampshire">
-					<option>Manchesters</option>
-					<option>Nashua</option>
-					<option>Concord</option>
-					<option>Dover</option>
-					<option>Rochester</option>
-				</optgroup>
-				<optgroup label="New Jersey">
-					<option>Newark</option>
-					<option>Jersey City</option>
-					<option>Paterson</option>
-					<option>Elizabeth</option>
-					<option>Edison</option>
-				</optgroup>
-				<optgroup label="New Mexico">
-					<option>Albuquerque</option>
-					<option>Las Cruces</option>
-					<option>Rio Rancho</option>
-					<option>Santa Fe</option>
-					<option>Roswell</option>
-				</optgroup>
-				<optgroup label="New York">
-					<option>New York</option>
-					<option>Buffalo</option>
-					<option>Rochester</option>
-					<option>Yonkers</option>
-					<option>Syracuse</option>
-				</optgroup>
-				<optgroup label="North Carolina">
-					<option>Charlotte</option>
-					<option>Raleigh</option>
-					<option>Greensboro</option>
-					<option>Winston-Salem</option>
-					<option>Durham</option>
-				</optgroup>
-				<optgroup label="North Dakota">
-					<option>Fargo</option>
-					<option>Bismarck</option>
-					<option>Grand Forks</option>
-					<option>Minot</option>
-					<option>West Fargo</option>
-				</optgroup>
-				<optgroup label="Ohio">
-					<option>Columbus</option>
-					<option>Cleveland</option>
-					<option>Cincinnati</option>
-					<option>Toledo</option>
-					<option>Akron</option>
-				</optgroup>
-				<optgroup label="Oklahoma">
-					<option>Oklahoma City</option>
-					<option>Tulsa</option>
-					<option>Norman</option>
-					<option>Broken Arrow</option>
-					<option>Lawton</option>
-				</optgroup>
-				<optgroup label="Oregon">
-					<option>Portland</option>
-					<option>Eugene</option>
-					<option>Salem</option>
-					<option>Gresham</option>
-					<option>Hillsboro</option>
-				</optgroup>
-				<optgroup label="Pennsylvania">
-					<option>Philadelphia</option>
-					<option>Pittsburgh</option>
-					<option>Allentown</option>
-					<option>Erie</option>
-					<option>Reading</option>
-				</optgroup>
-				<optgroup label="Rhode Island">
-					<option>Providence</option>
-					<option>Warwick</option>
-					<option>Cranston</option>
-					<option>Pawtucket</option>
-					<option>East Providence</option>
-				</optgroup>
-				<optgroup label="South Carolina">
-					<option>Columbia</option>
-					<option>Charleston</option>
-					<option>North Charleston</option>
-					<option>Mount Pleasant</option>
-					<option>Rock Hill</option>
-				</optgroup>
-				<optgroup label="South Dakota">
-					<option>Sioux Falls</option>
-					<option>Rapid City</option>
-					<option>Aberdeen</option>
-					<option>Brookings</option>
-					<option>Watertown</option>
-				</optgroup>
-				<optgroup label="Tennessee">
-					<option>Memphis</option>
-					<option>Nashville</option>
-					<option>Knoxville</option>
-					<option>Chattanooga</option>
-					<option>Clarksville</option>
-				</optgroup>
-				<optgroup label="Texas">
-					<option>Houston</option>
-					<option>San Antonio</option>
-					<option>Dallas</option>
-					<option>Austin</option>
-					<option>Fort Worth</option>
-				</optgroup>
-				<optgroup label="Utah">
-					<option>Salt Lake City</option>
-					<option>West Valley City</option>
-					<option>Provo</option>
-					<option>West Jordan</option>
-					<option>Orem</option>
-				</optgroup>
-				<optgroup label="Vermont">
-					<option>Burlington</option>
-					<option>Essex</option>
-					<option>South Burlington</option>
-					<option>Colchester</option>
-					<option>Rutland</option>
-				</optgroup>
-				<optgroup label="Virginia">
-					<option>Virginia Beach</option>
-					<option>Norfolk</option>
-					<option>Chesapeake</option>
-					<option>Arlington</option>
-					<option>Richmond</option>
-				</optgroup>
-				<optgroup label="Washington">
-					<option>Seattle</option>
-					<option>Spokane</option>
-					<option>Tacoma</option>
-					<option>Vancouver</option>
-					<option>Bellevue</option>
-				</optgroup>
-				<optgroup label="West Virginia">
-					<option>Charleston</option>
-					<option>Huntington</option>
-					<option>Parkersburg</option>
-					<option>Morgantown</option>
-					<option>Wheeling</option>
-				</optgroup>
-				<optgroup label="Wisconsin">
-					<option>Milwaukee</option>
-					<option>Madison</option>
-					<option>Green Bay</option>
-					<option>Kenosha</option>
-					<option>Racine</option>
-				</optgroup>
-				<optgroup label="Wyoming">
-					<option>Cheyenne</option>
-					<option>Casper</option>
-					<option>Laramie</option>
-					<option>Gillette</option>
-					<option>Rock Springs</option>
-				</optgroup>
-			</select>
-			<div class="clearfix"></div>
-		</div>
-	</div>
+	
 	<!-- //shop locator (popup) -->
 
 	<!-- modals -->
 	<!-- log in -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -465,9 +90,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- register -->
-	<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-hidden="true">
+	<!-- <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -507,7 +132,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- //modal -->
 	<!-- //top-header -->
 
@@ -519,9 +144,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="col-md-3 logo_agile">
 					<h1 class="text-center">
 						<a href="index.html" class="font-weight-bold font-italic">
-							<img src="images/logo2.png" alt=" " class="img-fluid">Electro Store
-						</a>
-					</h1>
+							<img src="data:image/png;base64,<%= resizedImage %>" alt=" " class="img-fluid"><%=Store.name%> pizza</a>
+							
+						</h1>
 				</div>
 				<!-- //logo -->
 				<!-- header-bot -->
@@ -556,7 +181,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- shop locator (popup) -->
 	<!-- //header-bottom -->
 	<!-- navigation -->
-	<div class="navbar-inner">
+	<!-- <div class="navbar-inner">
 		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="agileits-navi_search">
@@ -587,10 +212,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</a>
 						</li>
 						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
-							<!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Electronics -->
-							</a>
-							<div class="dropdown-menu">
+							<!-- </a> -->
+							<!-- <div class="dropdown-menu">
 								<div class="agile_inner_drop_nav_info p-4">
 									<h5 class="mb-3">Mobiles, Computers</h5>
 									<div class="row">
@@ -652,11 +277,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 										</div>
 									</div>
 								</div>
-							</div>
-						</li>
-						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
-							<!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Appliances -->
+							</div> -->
+						<!-- </li> -->
+						<!-- <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Appliances
 							</a>
 							<div class="dropdown-menu">
 								<div class="agile_inner_drop_nav_info p-4">
@@ -730,11 +355,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</li>
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
 							<!-- <a class="nav-link" href="about.html">About Us</a> -->
-						</li>
+						<!-- </li>
 						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
 							<a class="nav-link" href="product.html">New Arrivals</a>
-						</li>
-						<li class="nav-item dropdown active mr-lg-2 mb-lg-0 mb-2">
+						</li>  -->
+						<!-- <li class="nav-item dropdown active mr-lg-2 mb-lg-0 mb-2">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Pages
 							</a>
@@ -748,18 +373,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<a class="dropdown-item" href="checkout.html">Checkout Page</a>
 								<a class="dropdown-item" href="payment.html">Payment Page</a>
 							</div>
-						</li>
+						</li> -->
 						
-					</ul>
-				</div>
+					<!-- </ul> -->
+				<!-- </div>
 			</nav>
 		</div>
-	</div>
+	</div>  -->
 	<!-- //navigation -->
 
 	<!-- banner-2 -->
 	<div class="page-head_agile_info_w3l">
-
+		<!-- <img src="/static/logo/<%=Store.products.img[index]%>" alt=""> -->
 	</div>
 	<!-- //banner-2 -->
 	<!-- page -->
@@ -768,10 +393,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="container">
 				<ul class="w3_short">
 					<li>
-						<a href="index.html">Home</a>
+						<a href="/store/<%=Store.id%>">Home</a>
 						<i>|</i>
 					</li>
-					<li>Single Product 1</li>
+					<li><%=Store.products.name[index]%></li>
 				</ul>
 			</div>
 		</div>
@@ -791,29 +416,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="grid images_3_of_2">
 						<div class="flexslider">
 							<ul class="slides">
-								<li data-thumb="images/si1.jpg">
+								<li data-thumb="/static/logo/<%=Store.products.img[index]%>">
 									<div class="thumb-image">
-										<img src="images/si1.jpg" data-imagezoom="true" class="img-fluid" alt=""> </div>
+										<img src="/static/logo/<%=Store.products.img[index]%>" data-imagezoom="true" class="img-fluid" alt="product image"> </div>
 								</li>
-								<li data-thumb="images/si2.jpg">
+								<!-- <li data-thumb="/static/logo/si.jpg">
 									<div class="thumb-image">
-										<img src="images/si2.jpg" data-imagezoom="true" class="img-fluid" alt=""> </div>
+										<img src="/static/logo/si.jpg" data-imagezoom="true" class="img-fluid" alt=""> </div>
 								</li>
-								<li data-thumb="images/si3.jpg">
+								<li data-thumb="/static/logo/si1.jpg">
 									<div class="thumb-image">
-										<img src="images/si3.jpg" data-imagezoom="true" class="img-fluid" alt=""> </div>
-								</li>
+										<img src="/static/logo/si1.jpg" data-imagezoom="true" class="img-fluid" alt=""> </div>
+								</li> -->
 							</ul>
 							<div class="clearfix"></div>
 						</div>
+						<!-- <div class="clearfix"></div> -->
+
 					</div>
 				</div>
 
 				<div class="col-lg-7 single-right-left simpleCart_shelfItem">
-					<h3 class="mb-3">Samsung Galaxy J7 Prime (Gold, 16 GB) (3 GB RAM)</h3>
+					<h3 class="mb-3"><%=Store.products.name[index]%></h3>
 					<p class="mb-3">
-						<span class="item_price">$200.00</span>
-						<del class="mx-2 font-weight-light">$280.00</del>
+						<span class="item_price">$<%=Store.products.price[index]%></span>
+						<!-- <del class="mx-2 font-weight-light">$280.00</del> -->
 						<label>Free delivery</label>
 					</p>
 					<div class="single-infoagile">
@@ -832,7 +459,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</li>
 						</ul>
 					</div>
-					<div class="product-single-w3l">
+					<!-- <div class="product-single-w3l">
 						<p class="my-3">
 							<i class="far fa-hand-point-right mr-2"></i>
 							<label>1 Year</label>Manufacturer Warranty</p>
@@ -856,7 +483,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<p class="my-sm-4 my-3">
 							<i class="fas fa-retweet mr-3"></i>Net banking & Credit/ Debit/ ATM card
 						</p>
-					</div>
+					</div> -->
 					<div class="occasion-cart">
 						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 							<form action="#" method="post">
@@ -864,12 +491,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<input type="hidden" name="cmd" value="_cart" />
 									<input type="hidden" name="add" value="1" />
 									<input type="hidden" name="business" value=" " />
-									<input type="hidden" name="item_name" value="Samsung Galaxy J7 Prime" />
-									<input type="hidden" name="amount" value="200.00" />
-									<input type="hidden" name="discount_amount" value="1.00" />
+									<input type="hidden" name="item_name" value="<%=Store.products.name[index]%>" />
+									<input type="hidden" name="amount" value="<%=Store.products.price[index]%>" />
+									<input type="hidden" name="discount_amount" value="0.00" />
 									<input type="hidden" name="currency_code" value="USD" />
 									<input type="hidden" name="return" value=" " />
 									<input type="hidden" name="cancel_return" value=" " />
+									<input type="hidden" name="img" id="" value = "<%=Store.products.img[index]%>">
 									<input type="submit" name="submit" value="Add to cart" class="button" />
 								</fieldset>
 							</form>
@@ -885,7 +513,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 	<!-- js-files -->
 	<!-- jquery -->
-	<script src="js/jquery-2.2.3.min.js"></script>
+	<script src="/static/js/jquery-2.2.3.min.js"></script>
 	<!-- //jquery -->
 
 	<!-- nav smooth scroll -->
@@ -906,7 +534,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //nav smooth scroll -->
 
 	<!-- popup modal (for location)-->
-	<script src="js/jquery.magnific-popup.js"></script>
+	<script src="/static/js/jquery.magnific-popup.js"></script>
 	<script>
 		$(document).ready(function () {
 			$('.popup-with-zoom-anim').magnificPopup({
@@ -926,7 +554,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //popup modal (for location)-->
 
 	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
+	<script src="/static/js/minicart.js"></script>
 	<script>
 		paypals.minicarts.render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
 
@@ -941,7 +569,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				total += items[i].get('quantity');
 			}
 
-			if (total < 3) {
+			if (total < 1) {
 				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
 				evt.preventDefault();
 			}
@@ -969,13 +597,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //password-script -->
 
 	<!-- imagezoom -->
-	<script src="js/imagezoom.js"></script>
+	<script src="/static/js/imagezoom.js"></script>
 	<!-- //imagezoom -->
 
 	<!-- flexslider -->
-	<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/static/css/flexslider.css" type="text/css" media="screen" />
 
-	<script src="js/jquery.flexslider.js"></script>
+	<script src="/static/js/jquery.flexslider.js"></script>
 	<script>
 		// Can also be used with $(document).ready()
 		$(window).load(function () {
@@ -988,12 +616,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //FlexSlider-->
 
 	<!-- smoothscroll -->
-	<script src="js/SmoothScroll.min.js"></script>
+	<script src="/static/js/SmoothScroll.min.js"></script>
 	<!-- //smoothscroll -->
 
 	<!-- start-smooth-scrolling -->
-	<script src="js/move-top.js"></script>
-	<script src="js/easing.js"></script>
+	<script src="/static/js/move-top.js"></script>
+	<script src="/static/js/easing.js"></script>
 	<script>
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -1027,7 +655,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //smooth-scrolling-of-move-up -->
 
 	<!-- for bootstrap working -->
-	<script src="js/bootstrap.js"></script>
+	<script src="/static/js/bootstrap.js"></script>
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
 

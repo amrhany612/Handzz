@@ -323,7 +323,7 @@ ul.multi-column-dropdown li a:hover {
 /*-- carousel-slider --*/
 
 .carousel-item.item1 {
-    background: url(../images/b1.jpg) no-repeat center;
+    background: url(../img/cover.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -332,7 +332,7 @@ ul.multi-column-dropdown li a:hover {
 }
 
 .carousel-item.item2 {
-    background: url(../images/b2.jpg) no-repeat center;
+    background: url(../img/cover.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -341,7 +341,7 @@ ul.multi-column-dropdown li a:hover {
 }
 
 .carousel-item.item3 {
-    background: url(../images/b3.jpg) no-repeat center;
+    background: url(../img/cover.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -350,7 +350,7 @@ ul.multi-column-dropdown li a:hover {
 }
 
 .carousel-item.item4 {
-    background: url(../images/b4.jpg) no-repeat center;
+    background: url(../img/cover.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -450,7 +450,12 @@ h3.tittle-w3l span {
     font-size: 50px;
     letter-spacing: 0;
 }
-
+.image{
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height:auto;
+}
 /*-- //heading style --*/
 
 /*-- cart --*/
@@ -1318,13 +1323,13 @@ h2.footer-top-head-w3l {
 /*-- inner pages --*/
 
 .page-head_agile_info_w3l {
-    background: url(../images/b1.jpg) no-repeat center;
+    background: url(../img/cover.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
     -moz-background-size: cover;
-    min-height: 300px;
+    min-height: 800px;
 }
 
 .page-head_agile_info_w3l-2 {
@@ -2249,7 +2254,7 @@ div#testimonials h4.m-title {
     }
     .logo_agile h1 a img {
         left: -34%;
-        max-width: 40%;
+        width: 40%;
         top: -14px;
     }
     .navbar-light .navbar-nav .nav-link {
@@ -2629,6 +2634,7 @@ div#testimonials h4.m-title {
         display: none;
         overflow: hidden;
     }
+
 	/* //imagezoom (single page) */
 	/* cart */
 	#PPminicarts {
