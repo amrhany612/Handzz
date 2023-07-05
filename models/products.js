@@ -4,11 +4,14 @@ const productSchema = new mongoos.Schema({
     type:{
         type:String,
         minLength:3,
-        maxLength:12
+        
+    },
+    id:{
+        type:String,
     },
     name:{
         type:String,
-        maxLength:12
+        
     },
     storename:{
         type:String

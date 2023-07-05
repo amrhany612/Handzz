@@ -554,7 +554,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- shop locator (popup) -->
 	<!-- //header-bottom -->
 	<!-- navigation -->
-	<div class="navbar-inner">
+	<!-- <div class="navbar-inner">
 		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="agileits-navi_search">
@@ -585,10 +585,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</a>
 						</li>
 						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
-							<!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Electronics -->
-							</a>
-							<div class="dropdown-menu">
+							<!-- </a> -->
+							<!-- <div class="dropdown-menu">
 								<div class="agile_inner_drop_nav_info p-4">
 									<h5 class="mb-3">Mobiles, Computers</h5>
 									<div class="row">
@@ -650,12 +650,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 										</div>
 									</div>
 								</div>
-							</div>
-						</li>
-						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
-							<!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							</div> -->
+						<!-- </li> -->
+						<!-- <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
+							 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Appliances -->
-							</a>
+							<!-- </a>
 							<div class="dropdown-menu">
 								<div class="agile_inner_drop_nav_info p-4">
 									<h5 class="mb-3">TV, Appliances, Electronics</h5>
@@ -725,14 +725,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									</div>
 								</div>
 							</div>
-						</li>
+						</li>  -->
 						<!-- <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
 							<a class="nav-link" href="about.html">About Us</a>
 						</li> -->
-						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+						<!-- <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
 							<a class="nav-link" href="product.html">New Arrivals</a>
-						</li>
-						<li class="nav-item dropdown active mr-lg-2 mb-lg-0 mb-2">
+						</li> -->
+						<!-- <li class="nav-item dropdown active mr-lg-2 mb-lg-0 mb-2">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Pages
 							</a>
@@ -746,13 +746,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<a class="dropdown-item active" href="checkout.html">Checkout Page</a>
 								<a class="dropdown-item" href="payment.html">Payment Page</a>
 							</div>
-						</li>
+						</li> -->
 						
 					</ul>
 				</div>
 			</nav>
 		</div>
-	</div>
+	</div> 
 	<!-- //navigation -->
 
 	<!-- banner-2 -->
@@ -785,32 +785,34 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<!-- //tittle heading -->
 			<div class="checkout-right">
 				<h4 class="mb-sm-4 mb-3">Your shopping cart contains:
-					<span>3 Products</span>
+					<span><%= cart.product.name[0].length %> Products</span>
 				</h4>
 				<div class="table-responsive">
 					<table class="timetable_sub">
 						<thead>
 							<tr>
 								<th>SL No.</th>
-								<th>Product</th>
-								<th>Quantity</th>
+								<!-- <th>Product</th> -->
 								<th>Product Name</th>
+								<th>Quantity</th>
 
 								<th>Price</th>
 								<th>Remove</th>
 							</tr>
 						</thead>
 						<tbody>
-							<% n=0%>
-							<%for(i in values){%>
-
+							<% n = 0%>
+							<%if(cart.product.name[0].length > 1){%>
+							<%for(let i = 0; i < cart.product.name[0].length;i++){%>
 							<tr class="rem1">
-								<td class="invert"><%=n += 1%></td>
-								<td class="invert-image">
+								<td class="invert"><%= n+=1 %></td>
+								<!-- <td class="invert-image">
 									<a href="single.html">
-										<img src="images/a.jpg" alt=" " class="img-responsive">
+										<img src="" alt=" " class="img-responsive">
 									</a>
-								</td>
+								</td> -->
+								<td class="invert"><%=cart.product.name[0][i]%></td>
+
 								<td class="invert">
 
 									<div class="quantity">
@@ -818,7 +820,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 											<div class="entry value-minus">&nbsp;</div>
 											<div class="entry value">
 
-												<span><%=values[i]%></span>
+												<span><%=cart.product.quantity[0][i]%></span>
 
 											</div>
 											<div class="entry value-plus active">&nbsp;</div>
@@ -826,8 +828,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									</div>
 
 								</td>
-								<td class="invert"><%=values2[i]%></td>
-								<td class="invert">$259</td>
+								<td class="invert">$<%=cart.product.price[0][i]%></td>
 								<td class="invert">
 									<div class="rem">
 										<div class="close1"> </div>
@@ -835,14 +836,45 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								</td>
 							</tr>
 							<%}%>
-							
+							<%}else{%>
+								<tr class="rem1">
+									<td class="invert"><%= n=1 %></td>
+									<td class="invert-image">
+										<a href="single.html">
+											<img src="" alt=" " class="img-responsive">
+										</a>
+									</td>
+									<td class="invert">
+	
+										<div class="quantity">
+											<div class="quantity-select">
+												<div class="entry value-minus">&nbsp;</div>
+												<div class="entry value">
+	
+													<span><%=cart.product.quantity%></span>
+	
+												</div>
+												<div class="entry value-plus active">&nbsp;</div>
+											</div>
+										</div>
+	
+									</td>
+									<td class="invert"><%=cart.product.name%></td>
+									<td class="invert">$<%=cart.product.price%></td>
+									<td class="invert">
+										<div class="rem">
+											<div class="close1"> </div>
+										</div>
+									</td>
+								</tr>
 						
+								<%}%>
 						</tbody>
 					</table>
 				</div>
 			</div>
 			<div class="checkout-left">
-				<div class="address_form_agile mt-sm-5 mt-4">
+				<!-- <div class="address_form_agile mt-sm-5 mt-4">
 					<h4 class="mb-sm-4 mb-3">Add a new Details</h4>
 					<form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
 						<div class="creditly-wrapper wthree, w3_agileits_wrapper">
@@ -879,9 +911,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<button class="submit check_out btn">Delivery to this Address</button>
 							</div>
 						</div>
-					</form>
+					</form> -->
 					<div class="checkout-right-basket">
-						<a href="payment.html">Make a Payment
+						<a href="/store/check-out/payment">Make a Payment
 							<span class="far fa-hand-point-right"></span>
 						</a>
 					</div>

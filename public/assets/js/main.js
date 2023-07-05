@@ -1,12 +1,32 @@
-/**
-* Template Name: FlexStart
-* Updated: Mar 10 2023 with Bootstrap v5.2.3
-* Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 (function () {
   "use strict";
+  //*****************************************************************************
+  let overLay = document.querySelector(".overlay");
+  let listening = document.querySelector(".listening");
+  let listeningSpan = document.querySelector(".listening span");
+  let listeningIcon = document.querySelector(".listening i");
+  let body = document.querySelector("body");
+  let myTimeout = "";
+  let none = function() {
+    overLay.style.display = "none";
+    listening.style.display = "none";
+    body.style.overflow = "auto";
+  }
+  document.querySelector(".search-form .fa-microphone").onclick = function() {
+    overLay.style.display = "block";
+    window.scroll(0, 0);
+    listening.style.display = "flex";
+    listeningSpan.innerHTML = "Listening ...";
+    listeningIcon.style.display = "block";
+    body.style.overflow = "hidden";
+    myTimeout = setTimeout(() => {
+      listeningSpan.innerHTML = "Didn't get that!";
+      listeningIcon.style.display = "none";
+      setTimeout(() => none(), 2000);
+    }, 9000);
+  }
+  //*****************************************************************************
+  
 
   /**
    * Easy selector helper function
@@ -54,7 +74,12 @@
     recognition.onresult = (event) => {
       const result = event.results[0][0].transcript;
       searchInput.value = result;
+      //***********************
+      none();
+      clearTimeout(myTimeout);
+      //***********************
     }
+
   });
 
   // Add click event listener to the image icon
@@ -337,3 +362,4 @@
   new PureCounter();
 
 })();
+

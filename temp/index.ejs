@@ -40,7 +40,7 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="/" class="logo d-flex align-items-center">
-        <img src="/static/assets/img/logo.png" alt="">
+        <img src="/static/assets/img/logo01.png" alt="">
         <span>Handzz</span>
       </a>
 
@@ -277,18 +277,20 @@
         <div class="col-lg-12 d-flex justify-content-center">
           <ul id="portfolio-flters">
             <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-card">Card</li>
-            <li data-filter=".filter-web">Web</li>
+            <li data-filter=".filter-app">Food</li>
+            <li data-filter=".filter-card">Handmade</li>
+            <li data-filter=".filter-web">Clothes</li>
           </ul>
         </div>
       </div>
 
       <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
+        
+          <%for(i in myproduct){%>
+            <%if(myproduct[i].type == "food"){%>
         <div class="col-lg-4 col-md-6 portfolio-item filter-app">
           <div class="portfolio-wrap">
-            <img src="/static/assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+            <img src="/static/products/<%= myproduct[i].img%>" class="img-fluid" alt="">
             <div class="portfolio-info">
               <h4>App 1</h4>
               <p>App</p>
@@ -300,7 +302,8 @@
             </div>
           </div>
         </div>
-
+        <%}%>
+        <%}%>
         <div class="col-lg-4 col-md-6 portfolio-item filter-web">
           <div class="portfolio-wrap">
             <img src="/static/assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
@@ -316,7 +319,7 @@
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+        <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-app">
           <div class="portfolio-wrap">
             <img src="/static/assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
             <div class="portfolio-info">
@@ -329,7 +332,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-card">
           <div class="portfolio-wrap">
@@ -361,7 +364,7 @@
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+        <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-app">
           <div class="portfolio-wrap">
             <img src="/static/assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
             <div class="portfolio-info">
@@ -374,7 +377,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-card">
           <div class="portfolio-wrap">
@@ -973,11 +976,11 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form">
+            <form action="/" method="post">
               <div class="row gy-4">
 
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                  <input type="text" name="contactname" class="form-control" placeholder="Your Name" required>
                 </div>
 
                 <div class="col-md-6 ">
@@ -993,11 +996,11 @@
                 </div>
 
                 <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
+                  <!-- <div class="loading">Loading</div>
                   <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div> -->
 
-                  <button type="submit">Send Message</button>
+                  <button type="submit" class="button">Send Message</button>
                 </div>
 
               </div>

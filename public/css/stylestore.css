@@ -453,8 +453,8 @@ h3.tittle-w3l span {
 .image{
     max-width: 100%;
     max-height: 100%;
-    width: auto;
-    height:auto;
+    width: 200px;
+    height:200px;
 }
 /*-- //heading style --*/
 
@@ -1583,7 +1583,7 @@ td.invert-image a img {
 .close1,
 .close2,
 .close3 {
-    background: url('../images/close_1.png') no-repeat 0px 0px;
+    background: url('./images/close_1.png') no-repeat 0px 0px;
     cursor: pointer;
     width: 28px;
     height: 28px;

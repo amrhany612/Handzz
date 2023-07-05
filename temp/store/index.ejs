@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html lang="zxx">
 
 <head>
-	<title>Electro Store Ecommerce Category Bootstrap Responsive Web Template | Home :: w3layouts</title>
+	<title><%=Store.name%> | Home :: w3layouts</title>
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />
@@ -526,7 +526,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<h1>
 					<a href="index.html" class="font-weight-bold font-italic">
 						<img src="data:image/png;base64,<%= resizedImage %>" alt=" " class="img-fluid">
-						<%=Store.name%> pizza
+						<%=Store.name%>
 					</a>
 				</h1>			
 				</div>
@@ -776,13 +776,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="container">
 					<div class="w3l-space-banner">
 						<div class="carousel-caption p-lg-5 p-sm-4 p-3">
-							<p>Get flat
-								<span>10%</span> Cashback</p>
-							<h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">The
+							<!-- <p>Get flat -->
+								<!-- <span>10%</span> Cashback</p> -->
+							<!-- <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">The
 								<span>Big</span>
 								Sale
-							</h3>
-							<a class="button2" href="product.html">Shop Now </a>
+							</h3> -->
+							<!-- <a class="button2" href="product.html">Shop Now </a> -->
 						</div>
 					</div>
 				</div>
@@ -856,7 +856,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="wrapper">
 						<!-- first section -->
 						<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-							<h3 class="heading-tittle text-center font-italic"><%=Store.products.type%></h3>
+							<h3 class="heading-tittle text-center font-italic"><%=Store.products.type[0]%></h3>
 							
 							<div class="row">
 								
@@ -864,7 +864,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<div class="col-md-4 product-men mt-5">
 									<div class="men-pro-item simpleCart_shelfItem">
 										<div class="men-thumb-item text-center">	
-											<img class="image" src="/static/logo/<%=Store.products.img[i]%>" alt="">
+											<img class="image" src="/static/products/<%=Store.products.img[i]%>" alt="">
 											<div class="men-cart-pro">
 												<div class="inner-men-cart-pro">
 													<a href="/store/<%=Store._id%>/product-details/<%=Store.products.name[i]%>" class="link-product-add-cart">Quick View</a>

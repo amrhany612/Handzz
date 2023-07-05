@@ -20,6 +20,8 @@ const app = express();
 const user = require("./models/usersModel")
 const owner = require("./models/ownerModel")
 const store = require("./models/storeModel")
+const product = require("./models/products")
+
 require('./passport-setup')
 const DB = 'mongodb://amrh18039:TiOdQeAAfLqOqbkq@ac-pjlsutq-shard-00-00.tyrtmnv.mongodb.net:27017,ac-pjlsutq-shard-00-01.tyrtmnv.mongodb.net:27017,ac-pjlsutq-shard-00-02.tyrtmnv.mongodb.net:27017/handzz?ssl=true&replicaSet=atlas-ezd372-shard-0&authSource=admin&retryWrites=true&w=majority'
 const indexroute = require("./routes/route");
@@ -60,6 +62,7 @@ app.use((req,res,next)=>{
     next()
 })
 
+// views
 app.set('Template engine','ejs')
 app.set('views','temp')
 
@@ -71,7 +74,7 @@ app.use('/css',express.static(__dirname+'/node_modules/bootstrap/dist/css'))
 app.use("/",indexroute);
 
 
-
+// Middleware
 let sessionchecker = (req,res,next)=>{
     if(req.session.user&&req.cookies.user_sid){
         res.redirect("/")
@@ -103,6 +106,7 @@ app.get('/',async(req,res)=>{
         const isAuthenticated = req.session.isAuthenticated || false;
         const Content_Type = req.headers['content-type']
         const mystore = await store.find() 
+        const myproduct = await product.find()
         const resizedImages = []
         for(i in mystore){
             const resizedBuffer = await sharp(mystore[i].logo.data)
@@ -114,12 +118,13 @@ app.get('/',async(req,res)=>{
             
 
         if(Content_Type && Content_Type.includes('json')){
-            res.status(200).json({mystore,isAuthenticated:isAuthenticated})
+           
+            res.status(200).json({mystore,isAuthenticated:isAuthenticated,resizedImages})
         }else{
-            res.status(200).render('index.ejs',{isAuthenticated,mystore,resizedImages})
+            res.status(200).render('index.ejs',{isAuthenticated,mystore,resizedImages,myproduct})
         }
      
-    // console.log(mystore.name)
+    // console.log(myproduct.type)
        
     
 })
@@ -309,5 +314,4 @@ useUnifiedTopology:true,
 // httpserver.listen(process.env.PORT,()=>{
 //     console.log("server running...")
 // })
-
 

@@ -1,5 +1,6 @@
 const store = require("../models/storeModel")
 const product = require("../models/products")
+const contact = require('../models/contactModel')
 const sharp = require('sharp')
 exports.indexPage = async(req,res)=>{
     const isAuthenticated = req.session.isAuthenticated || false;
@@ -46,3 +47,17 @@ exports.getStore = async(req,res)=>{
 //     console.log(product)
 //     res.render('store/index.ejs',{Store})
 // }
+
+exports.contact = (req,res)=>{
+    
+  const Contact = new contact({ name:req.body.contactname,subject:req.body.subject, email:req.body.email, message:req.body.message });
+
+  Contact.save()
+    .then(() => {
+      res.redirect('/')
+    })
+    .catch(err => {
+      console.error(err);
+      res.send('Oops, something went wrong. Please try again later.');
+    });
+}

@@ -264,7 +264,17 @@ th, td {
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
-
+.limited {
+  max-width: 200px; /* Set a maximum width for the cell */
+  white-space: nowrap; /* Prevent the text from wrapping by default */
+  overflow: hidden; /* Hide any overflow */
+  text-overflow: ellipsis; /* Add an ellipsis at the end of the visible text */
+}
+.limited:hover {
+  white-space: normal; /* Allow the text to wrap when hovering over the cell */
+  overflow: visible; /* Show any overflow */
+  text-overflow: clip; /* Hide the ellipsis */
+}
 th {
   background-color: #f2f2f2;
   color: #333;

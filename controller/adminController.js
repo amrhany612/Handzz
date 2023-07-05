@@ -1,26 +1,68 @@
 const owner = require("../models/ownerModel")
 const store = require("../models/storeModel")
 const product = require("../models/products")
+const contact = require("../models/contactModel")
+
+const express = require('express')
+
 const sharp =require('sharp')
 const bcrypt = require('bcrypt') 
 const multer = require('multer')
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
+const session = require('express-session')
+const cookieParser = require("cookie-parser")
+const MemoryStore = require('memorystore')(session)
+
+const app = express()
+app.use(cookieParser())
+app.use(session({
+    key:'user_sid',
+    secret:process.env.secret,
+    resave:false,
+    saveUninitialized:false,
+    store: new MemoryStore({
+        checkPeriod: 86400000 // prune expired entries every 24h
+      }),
+    cookie:{
+        expires:180000,
+    }
+}))
 
 
+app.use((req,res,next)=>{
+    
+    if(req.cookies.user_sid&&!req.session.user){
+        res.clearCookie("user_sid")
+    }
+    next()
+})
+
+exports.adminChecker = (req,res,next)=>{
+    if(req.session.user&&req.cookies.user_sid){
+        next()
+    }else{
+        res.redirect('/admin')
+    }
+}
 exports.getLogin = (req,res)=>{
     res.render('adminlogin.ejs')
 }
 
-exports.adminDash =(req,res)=>{
-    res.render('admindash.ejs')
+exports.adminDash =async(req,res)=>{
+    const mycontact = await contact.find()
+    res.render('admindash.ejs',{mycontact})
 }
 
 exports.getDash = async (req,res)=>{
     username = req.body.adminname
     password = req.body.adminpassword
+    const data = [username,password]
     if(username=="admin" && password=="admin"){
+        
+        req.session.user = data
         res.redirect('/admin-dash')
+
     }else{
         res.redirect('/admin')
     }
@@ -153,7 +195,15 @@ exports.addProduct = async (req,res)=>{
     }
     }
       })
-
+   const myProduct = new product({
+        type:req.body.type,
+        id:mystore._id,
+        name: req.body.name,
+        price:req.body.price,
+        amount:req.body.amount,
+        img:req.file.filename
+    })
+    await myProduct.save()
     if(mystore){
         res.redirect("/admin-dash")
     }else{
