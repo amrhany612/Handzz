@@ -108,6 +108,7 @@ router.get("/store/:id/product-details/:name",storeController.getProduct)
 // router.post("/store/:id/product-details/:name",storeController.addToCart)
 router.post("/store/check-out",storeController.checkOutPage)
 router.get('/store/check-out/payment',storeController.payementPage)
+// router.post('/store/check-out/payment#parentHorizontalTab2',storeController.payementPage2)
 
 
 

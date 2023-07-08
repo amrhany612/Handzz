@@ -22,6 +22,10 @@ const user = require("./models/usersModel")
 const owner = require("./models/ownerModel")
 const store = require("./models/storeModel")
 const product = require("./models/products")
+const userController = require("./controller/userController")
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY
+const stripePublishKey = process.env.STRIPE_PUBLISH_KEY
+const stripe = require('stripe')(stripeSecretKey)
 
 require('./passport-setup')
 const DB = 'mongodb://amrh18039:TiOdQeAAfLqOqbkq@ac-pjlsutq-shard-00-00.tyrtmnv.mongodb.net:27017,ac-pjlsutq-shard-00-01.tyrtmnv.mongodb.net:27017,ac-pjlsutq-shard-00-02.tyrtmnv.mongodb.net:27017/handzz?ssl=true&replicaSet=atlas-ezd372-shard-0&authSource=admin&retryWrites=true&w=majority'
@@ -375,6 +379,78 @@ app.get("/logout",(req,res)=>{
     res.redirect("back")
 })
 
+app.post('/charge', async (req, res) => {
+    check('number').isCreditCard(),
+    check('expiration-month-and-year').matches(/^(0[1-9]|1[0-2])\/\d{4}$/),
+    check('cvc').isLength({ min: 3, max: 4 }),
+    async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+  
+    try {
+      const token = await stripe.tokens.create({
+        card: {
+          number: req.body.number,
+          exp_month: req.body['expiration-month-and-year'].split('/')[0].trim(),
+          exp_year:  req.body['expiration-month-and-year'].split('/')[1].trim(),
+          cvc: req.body.cvc,
+        },
+      });
+  
+      const charge = await stripe.charges.create({
+        amount: 2000, // Replace with your actual amount
+        currency: 'usd',
+        source: token.id,
+      });
+  
+      res.send('Payment successful');
+    } catch (err) {
+      console.log(err);
+      res.send('Payment failed');
+    }
+  }});
+// app.post('/store/check-out/payment', function(req, res) {
+//     const name = req.body.name;
+//     const cardNumber = req.body.number;
+//     const cvv = req.body['security-code'];
+//     const expMonth = req.body['expiration-month-and-year'].slice(0, 2);
+//     const expYear = req.body['expiration-month-and-year'].slice(3);
+  
+//     stripe.tokens.create({
+//       card: {
+//         number: cardNumber,
+//         exp_month: expMonth,
+//         exp_year: expYear,
+//         cvc: cvv,
+//         name: name
+//       }
+//     }, function(err, token) {
+//       if (err) {
+//         // Handle error
+//         console.log(err.message);
+//         res.redirect('/payment');
+//       } else {
+//         stripe.charges.create({
+//           amount: 2000, // Replace with your actual amount
+//           currency: 'usd',
+//           source: token.id
+//         }, function(err, charge) {
+//           if (err) {
+//             // Handle error
+//             console.log(err.message);
+//             res.redirect('/payment');
+//           } else {
+//             // Handle success
+//             console.log(charge);
+//             res.redirect('/success');
+//           }
+//         });
+//       }
+//     });
+//   });
+
 
 
 mongoos.connect(DB,{
@@ -389,7 +465,6 @@ useUnifiedTopology:true,
 }).catch((err)=>{
     console.log(err);
 })
-
 
 
 // httpserver = http.createServer(app);

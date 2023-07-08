@@ -802,7 +802,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</div>
 						</div>
 						<div>
-							<form action="#" method="post" class="creditly-card-form agileinfo_form">
+							<!-- <form action="/payment" method="post" class="creditly-card-form agileinfo_form">
 								<div class="creditly-wrapper wthree, w3_agileits_wrapper">
 									<div class="credit-card-wrapper">
 										<div class="first-row form-group">
@@ -822,7 +822,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 													<div class="controls">
 														<label class="control-label">CVV</label>
 														<input class="security-code form-control" Â· inputmode="numeric" type="text" name="security-code" placeholder="&#149;&#149;&#149;">
-													</div>
+														 <input class="security-code form-control" Â· inputmode="numeric" type="text" name="security-code" placeholder="&#149;&#149;&#149;"> -->
+													<!-- </div>
 												</div>
 												<div class="clear"> </div>
 											</div>
@@ -831,14 +832,51 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 												<input class="expiration-month-and-year form-control" type="text" name="expiration-month-and-year" placeholder="MM / YY">
 											</div>
 										</div>
-										<button class="submit mt-3">
-											<span>Make a payment </span>
+										<button type="submit" class="submit mt-3">
+											<span>make a payment</span>
 										</button>
 									</div>
 								</div>
-							</form>
+							</form> 
 
-						</div>
+						</div> -->
+
+						<div class="col-md-6 number-paymk">
+							<form action="/charge" method="post" class="creditly-card-form-2 shopf-sear-headinfo_form">
+							  <section class="creditly-wrapper payf_wrapper">
+								<div class="credit-card-wrapper">
+								  <div class="first-row form-group">
+									<div class="controls">
+									  <label class="control-label">Card Holder </label>
+									  <input class="billing-address-name form-control" type="text" name="name" placeholder="John Smith">
+									</div>
+									<div class="paymntf_card_number_grids my-2">
+									  <div class="fpay_card_number_grid_left">
+										<div class="controls">
+										  <label class="control-label">Card Number</label>
+										  <input class="number credit-card-number-2 form-control" type="text" name="number" inputmode="numeric" autocomplete="cc-number"
+											autocompletetype="cc-number" x-autocompletetype="cc-number" placeholder="•••• •••• •••• ••••">
+										</div>
+									  </div>
+									  <div class="fpay_card_number_grid_right mt-2">
+										<div class="controls">
+										  <label class="control-label">CVV</label>
+										  <input class="security-code-2 form-control" inputmode="numeric" type="text" name="security-code" placeholder="•••">
+										</div>
+									  </div>
+									  <div class="clear"> </div>
+									</div>
+									<div class="controls">
+									  <label class="control-label">Valid Thru</label>
+									  <input class="expiration-month-and-year-2 form-control" type="text" name="expiration-month-and-year" placeholder="MM / YY">
+									</div>
+								  </div>
+								  <button type="submit" class="submit-button">Proceed Payment</button>
+								</div>
+							  </section>
+							</form>
+						  </div>
+						  
 						<!-- <div>
 							<div class="vertical_post">
 								<form action="#" method="post">
@@ -934,15 +972,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								</form>
 							</div>
 						</div> -->
-						<div>
+						<!-- <div>
 							<div id="tab4" class="tab-grid" style="display: block;">
 								<div class="row">
 									<div class="col-md-6 pay-forms">
 										<img class="pp-img" src="/static/img/paypal.png" alt="Image Alternative text" title="Image Title">
 										<p>Important: You will be redirected to PayPal's website to securely complete your payment.</p>
 										<a class="btn btn-primary">Checkout via Paypal</a>
-									</div>
-									<div class="col-md-6 number-paymk">
+									</div> -->
+									<!-- <div class="col-md-6 number-paymk">
 										<form action="#" method="post" class="creditly-card-form-2 shopf-sear-headinfo_form">
 											<section class="creditly-wrapper payf_wrapper">
 												<div class="credit-card-wrapper">
@@ -976,7 +1014,43 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 												</div>
 											</section>
 										</form>
-									</div>
+									</div> -->
+									<!-- <div class="col-md-6 number-paymk">
+										<form action="/charge" method="post" class="creditly-card-form-2 shopf-sear-headinfo_form">
+										  <section class="creditly-wrapper payf_wrapper">
+											<div class="credit-card-wrapper">
+											  <div class="first-row form-group">
+												<div class="controls">
+												  <label class="control-label">Card Holder </label>
+												  <input class="billing-address-name form-control" type="text" name="name" placeholder="John Smith">
+												</div>
+												<div class="paymntf_card_number_grids my-2">
+												  <div class="fpay_card_number_grid_left">
+													<div class="controls">
+													  <label class="control-label">Card Number</label>
+													  <input class="number credit-card-number-2 form-control" type="text" name="number" inputmode="numeric" autocomplete="cc-number"
+														autocompletetype="cc-number" x-autocompletetype="cc-number" placeholder="•••• •••• •••• ••••">
+													</div>
+												  </div>
+												  <div class="fpay_card_number_grid_right mt-2">
+													<div class="controls">
+													  <label class="control-label">CVV</label>
+													  <input class="security-code-2 form-control" inputmode="numeric" type="text" name="security-code" placeholder="•••">
+													</div>
+												  </div>
+												  <div class="clear"> </div>
+												</div>
+												<div class="controls">
+												  <label class="control-label">Valid Thru</label>
+												  <input class="expiration-month-and-year-2 form-control" type="text" name="expiration-month-and-year" placeholder="MM / YY">
+												</div>
+											  </div>
+											  <button type="submit" class="submit-button">Proceed Payment</button>
+											</div>
+										  </section>
+										</form>
+									  </div> -->
+									
 								</div>
 							</div>
 						</div>
