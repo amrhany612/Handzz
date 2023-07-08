@@ -292,12 +292,12 @@
           <div class="portfolio-wrap">
             <img src="/static/products/<%= myproduct[i].img%>" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>App 1</h4>
-              <p>App</p>
+              <h4><%= myproduct[i].name%></h4>
+              <p><%=myproduct[i].type%></p>
               <div class="portfolio-links">
-                <a href="/static/assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery"
-                  class="portfokio-lightbox" title="App 1"><i class="bi bi-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
+                <a href="/store/<%= myproduct[i].id%>" data-gallery="portfolioGallery"
+                  class="portfokio-lightbox" title=""><i class="bi bi-plus"></i></a>
+                <a href="/store/<%= myproduct[i].id%>/product-details/<%=myproduct[i].name%>" title="More Details"><i class="bi bi-link"></i></a>
               </div>
             </div>
           </div>

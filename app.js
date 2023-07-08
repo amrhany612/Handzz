@@ -1,4 +1,5 @@
 const express = require('express');
+const { check, validationResult } = require('express-validator');
 const mongoos = require('mongoose');
 const multer = require('multer')
 const sharp = require('sharp')
@@ -239,54 +240,135 @@ app.get('/dash/:id',sessionchecker3,async(req,res)=>{
 // get register page 
 
 app.get('/register',sessionchecker,(req,res)=>{
-    const empty = false
-    res.render("sign up.ejs",{empty})
+    
+    res.render("sign up.ejs",{errors:null})
 })
 
-app.post("/register",async(req,res)=>{
-    const content_type = req.headers['content-type']
-    const fname = req.body.fname
-    const lname = req.body.lname
-    const username= req.body.username
-    const address = req.body.address
-    const ph = req.body.ph
-    const password=req.body.password
-    const type = req.body.type
-    let errors = []
-    const myUser =  new user({
-        fname:req.body.fname,
-        lname:req.body.lname,
-        username:req.body.username,
-        address:req.body.address,
-        ph:req.body.ph,
-        password:req.body.password,
-        type:req.body.type
-    })
-    if(fname == "" || lname=="",username==""|| address==""||ph==""||password==""){
-        if(content_type && content_type.includes('json')){
-            res.status(200).json({"msg":"All fields are required"})
-        }else{
+// app.post("/register",async(req,res)=>{
+//     const content_type = req.headers['content-type']
+//     const fname = req.body.fname
+//     const lname = req.body.lname
+//     const username= req.body.username
+//     const address = req.body.address
+//     const ph = req.body.ph
+//     const password=req.body.password
+//     const type = req.body.type
+//     let errors = []
+//     const myUser =  new user({
+//         fname:req.body.fname,
+//         lname:req.body.lname,
+//         username:req.body.username,
+//         address:req.body.address,
+//         ph:req.body.ph,
+//         password:req.body.password,
+//         type:req.body.type
+//     })
+//     if(fname == "" || lname=="",username==""|| address==""||ph==""||password==""){
+//         if(content_type && content_type.includes('json')){
+//             res.status(200).json({"msg":"All fields are required"})
+//         }else{
             
-            errors.push({msg:'All fields are required'})
-            const empty = true;
-            res.render('sign up',{
-                errors,
-                empty
-            })
-        }
+//             errors.push({msg:"All fields are required"})
+//         }
+//         errors.push({msg:"All fields are required"})
+//     }else{
+      
+//         await myUser.save().then(()=>{
+//         if(content_type && content_type.includes('json')){
+//             res.status(200).json({myUser,msg:"Registered"})
+//         }else{
+//             res.status(201).redirect("/login")
+//         }
+//     }).catch((err)=>{
+//         // res.status(500).json({msg:"Failed To Reach Server"})
+//         console.log(err)
+//     })
+//     }
+// })
+
+
+
+// app.post("/register", async (req, res) => {
+//   const content_type = req.headers['content-type']
+//   const fname = req.body.fname
+//   const lname = req.body.lname
+//   const username = req.body.username
+//   const address = req.body.address
+//   const ph = req.body.ph
+//   const password = req.body.password
+//   const type = req.body.type
+//   let errors = []
+//   const myUser = new user({
+//     fname: req.body.fname,
+//     lname: req.body.lname,
+//     username: req.body.username,
+//     address: req.body.address,
+//     ph: req.body.ph,
+//     password: req.body.password,
+//     type: req.body.type
+//   })
+
+//   if (fname == "" || lname == "", username == "" || address == "" || ph == "" || !password) {
+//     if (content_type && content_type.includes('json')) {
+//       res.status(200).json({ "msg": "All fields are required" })
+//     } else {
+//       errors.push({ msg: "All fields are required" })
+//     //   res.status(400).redirect('/register')
+//     }
+//   } else {
+//     // Hash the password before saving it to the database
+//     const saltRounds = 10;
+//     bcrypt.hash(password, saltRounds, function (err, hash) {
+//       if (err) {
+//         // Handle error
+//         console.log(err);
+//         res.status(500).json({ msg: "Failed to hash password" });
+//       } else {
+//         myUser.password = hash;
+
+//         myUser.save().then(() => {
+//           if (content_type && content_type.includes('json')) {
+//             res.status(200).json({ myUser, msg: "Registered" })
+//           } else {
+//             res.status(201).redirect("/login")
+//           }
+//         }).catch((err) => {
+//           // Handle error
+//           console.log(err)
+//           res.status(500).json({ msg: "Failed to save user to database" })
+//         })
+//       }
+//     });
+//   }
+// // console.log(myUser.password)
+// })
+
+app.post('/register', [
+    check('fname').notEmpty().withMessage('First name is required.'),
+    check('lname').notEmpty().withMessage('Last name is required.'),
+    check('username').notEmpty().withMessage('Username is required.'),
+    check('address').notEmpty().withMessage('Address is required.'),
+    check('ph').notEmpty().withMessage('Phone number is required.'),
+    check('password').notEmpty().withMessage('Password is required.'),
+    check('type').notEmpty().withMessage('Type is required.'),
+  ], (req, res) => {
+    const content_type = req.headers['content-type']
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+
+            // return res.status(422).json({ errors: errors.array() });
+            let errors = errors.array()
+            // res.redi('sign up.ejs',{errors:errors.array()})
+            res.redirect("/register")
+
+      
+    }else{
+        return res.status(201).json({msg:"not empty"})
     }
-    await myUser.save().then(()=>{
-        if(content_type && content_type.includes('json')){
-            res.status(200).json({myUser,msg:"Registered"})
-        }else{
-            res.status(201).redirect("/login")
-        }
-    }).catch((err)=>{
-        res.status(500).json({msg:"Failed To Reach Server"})
-    })
-
-})
-
+  
+    // Handle form submission
+    // ...
+  });
 //logout
 app.get("/logout",(req,res)=>{
     res.clearCookie("user_sid")

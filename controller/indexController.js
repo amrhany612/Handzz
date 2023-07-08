@@ -32,6 +32,7 @@ exports.getStore = async(req,res)=>{
     .toBuffer();
     const resizedImage = resizedBuffer.toString('base64');
     res.render('store/index.ejs',{Store,product,resizedImage})
+    // console.log(req.session.user.fname)
 }
 
 // exports.getStore = async(req,res)=>{

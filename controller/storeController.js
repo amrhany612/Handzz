@@ -25,6 +25,7 @@ exports.checkOutPage = (req,res)=>{
 
 exports.payementPage = (req,res)=>{
     res.render('store/payment.ejs')
+    // console.log(req.session.user.username)
 }
 
 exports.addToCart = async(req,res)=>{

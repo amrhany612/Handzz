@@ -15,7 +15,18 @@ body {
 	/* background-color: rgb(0 0 0 / 60%); */
 	margin: auto;
 }
-
+#error-messages {
+	color: red;
+	font-size: 14px;
+	position: absolute;
+	top: 100%;
+	left: 10px;
+	
+  }
+  .invalid-feedback {
+	color: red;
+	font-size: 14px;
+  }
 :root {
 	--main-color: #79a5ca;
 
