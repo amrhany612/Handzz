@@ -34,7 +34,11 @@
 </head>
 
 <body>
-
+  <div class="listening">
+    <span></span>
+    <i class="fa-solid fa-microphone"></i>
+  </div>
+  <div class="overlay"></div>
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -80,20 +84,7 @@
                 </div>
               </div>
             </form>
-            <div id="voice-modal" class="modal">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <span class="close">&times;</span>
-                  <h2>Speak Now</h2>
-                </div>
-                <div class="modal-body">
-                  <div class="voice-icon">
-                    <i class="fas fa-microphone"></i>
-                  </div>
-                  <p>Speak your search query</p>
-                </div>
-              </div>
-            </div>
+          
           </li>
           <%if(!isAuthenticated){%>
           <!-- <li class=""><a href="/login"><span>log-in</span> <i class="bi bi-chevron-right"></i></a> -->

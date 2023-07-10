@@ -379,10 +379,10 @@ app.get("/logout",(req,res)=>{
     res.redirect("back")
 })
 
-app.post('/charge', async (req, res) => {
+app.post('/charge',[
     check('number').isCreditCard(),
-    check('expiration-month-and-year').matches(/^(0[1-9]|1[0-2])\/\d{4}$/),
-    check('cvc').isLength({ min: 3, max: 4 }),
+    check('expiration').matches(/^(0[1-9]|1[0-2])\/\d{2}$/).withMessage('expiration date is not correct'),
+    check('cvv').isLength({ min: 3})],
     async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -393,9 +393,9 @@ app.post('/charge', async (req, res) => {
       const token = await stripe.tokens.create({
         card: {
           number: req.body.number,
-          exp_month: req.body['expiration-month-and-year'].split('/')[0].trim(),
-          exp_year:  req.body['expiration-month-and-year'].split('/')[1].trim(),
-          cvc: req.body.cvc,
+          exp_month: req.body['expiration'].split('/')[0].trim(),
+          exp_year:  req.body['expiration'].split('/')[1].trim(),
+          cvc: req.body.cvv,
         },
       });
   
@@ -410,7 +410,7 @@ app.post('/charge', async (req, res) => {
       console.log(err);
       res.send('Payment failed');
     }
-  }});
+  });
 // app.post('/store/check-out/payment', function(req, res) {
 //     const name = req.body.name;
 //     const cardNumber = req.body.number;

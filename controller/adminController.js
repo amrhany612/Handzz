@@ -186,6 +186,7 @@ exports.addStore = async (req,res)=>{
 // }
 
 exports.addProduct = async (req,res)=>{
+    const mystore1 = await store.findOne({name:req.body.Storename})
     const mystore = await store.findOneAndUpdate({name:req.body.Storename},{"$addToSet":{products:{
         type:req.body.type,
         name: req.body.name,
@@ -195,19 +196,20 @@ exports.addProduct = async (req,res)=>{
     }
     }
       })
-   const myProduct = new product({
-        type:req.body.type,
-        id:mystore._id,
-        name: req.body.name,
-        price:req.body.price,
-        amount:req.body.amount,
-        img:req.file.filename
-    })
-    await myProduct.save()
+//    const myProduct = new product({
+//         type:req.body.type,
+//         id:mystore.id,
+//         name: req.body.name,
+//         price:req.body.price,
+//         amount:req.body.amount,
+//         img:req.file.filename
+//     })
+//     await myProduct.save()
     if(mystore){
         res.redirect("/admin-dash")
     }else{
         res.redirect("/create-account/market")
     }
 
+    console.log(req.body.Storename)
 }

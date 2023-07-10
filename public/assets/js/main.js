@@ -1,12 +1,12 @@
 (function () {
   "use strict";
-  //*****************************************************************************
+  //***************************
   let overLay = document.querySelector(".overlay");
   let listening = document.querySelector(".listening");
   let listeningSpan = document.querySelector(".listening span");
   let listeningIcon = document.querySelector(".listening i");
   let body = document.querySelector("body");
-  let myTimeout = "";
+  let myTimeout = "1s";
   let none = function() {
     overLay.style.display = "none";
     listening.style.display = "none";
@@ -25,7 +25,7 @@
       setTimeout(() => none(), 2000);
     }, 9000);
   }
-  //*****************************************************************************
+  //***************************
   
 
   /**
@@ -35,7 +35,8 @@
     el = el.trim()
     if (all) {
       return [...document.querySelectorAll(el)]
-    } else {
+    }
+     else {
       return document.querySelector(el)
     }
   }
@@ -74,10 +75,10 @@
     recognition.onresult = (event) => {
       const result = event.results[0][0].transcript;
       searchInput.value = result;
-      //***********************
+      //*********
       none();
       clearTimeout(myTimeout);
-      //***********************
+      //*********
     }
 
   });
@@ -230,7 +231,7 @@
    */
   new Swiper('.clients-slider', {
     speed: 400,
-    loop: false,
+    loop: true,
     autoplay: {
       delay: 5000,
       disableOnInteraction: false
@@ -362,4 +363,3 @@
   new PureCounter();
 
 })();
-
