@@ -62,3 +62,7 @@ exports.contact = (req,res)=>{
       res.send('Oops, something went wrong. Please try again later.');
     });
 }
+
+exports.getAbout = async(req,res)=>{
+  res.render('aboutus.ejs')
+}

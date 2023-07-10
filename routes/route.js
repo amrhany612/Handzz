@@ -109,6 +109,7 @@ router.get("/store/:id/product-details/:name",storeController.getProduct)
 router.post("/store/check-out",storeController.checkOutPage)
 router.get('/store/check-out/payment',storeController.payementPage)
 // router.post('/store/check-out/payment#parentHorizontalTab2',storeController.payementPage2)
+router.get('/about-us',indexController.getAbout)
 
 
 

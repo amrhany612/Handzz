@@ -133,9 +133,20 @@ app.get('/',async(req,res)=>{
        
     
 })
-// 
 
+// Search  
 
+app.post("/search",async(req,res)=>{
+    const keyword = req.body.search;
+    const result = await store.findOne({name:keyword});
+    
+    if(result){
+        res.status(200).redirect(`/store/${result.id}`);
+    }else{
+        res.status(400).json({msg:'Store Not Found'});
+    }
+    
+})
 
 // get login page 
         

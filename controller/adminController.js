@@ -186,7 +186,7 @@ exports.addStore = async (req,res)=>{
 // }
 
 exports.addProduct = async (req,res)=>{
-    const mystore1 = await store.findOne({name:req.body.Storename})
+    // const mystore1 = await store.findOne({name:req.body.Storename})
     const mystore = await store.findOneAndUpdate({name:req.body.Storename},{"$addToSet":{products:{
         type:req.body.type,
         name: req.body.name,
