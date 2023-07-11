@@ -250,7 +250,7 @@ app.post("/login/owner",async(req,res)=>{
 app.get('/dash/:id',sessionchecker3,async(req,res)=>{
     const id = req.params.id
     const myOwner = await owner.findOne({_id:id})
-    res.render("dash.ejs",{myOwner})
+    res.render("dashInjection.ejs",{myOwner})
 })
 // get register page 
 
